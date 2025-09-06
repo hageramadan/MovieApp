@@ -7,7 +7,7 @@ import { MovieCard } from "./components/movie-card/movie-card";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Search, MovieCard],
+  imports: [RouterOutlet, Header, Search],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
