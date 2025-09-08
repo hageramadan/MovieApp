@@ -1,0 +1,89 @@
+.search-input {
+  border: 1px solid #d7d7d7;
+  border-radius: 10px;
+  height: 46px;
+}
+
+.search-result {
+  display: block;
+  margin-bottom: 15px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+}
+
+.search-keyword {
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.search-btn {
+  border-radius: 10px;
+  height: 46px;
+  font-weight: 600;
+  padding: 0 20px;
+}
+
+.movie-card img {
+  border-radius: 10px;
+}
+
+.rating-circle {
+  position: absolute;
+  bottom: -15px;
+  left: 10px;
+  background: black;
+  border-radius: 50%;
+  border: 3px solid #1db954;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #1db954;
+  font-size: 14px;
+}
+.rating-circle span {
+  position: absolute;
+  color: white;
+  font-weight: bold;
+}
+
+.bi-heart,
+.bi-heart-fill {
+  color: black;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.bi-heart:hover,
+.bi-heart-fill:hover {
+  color: yellow;
+}
+
+.btn-dots {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white !important;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-dots i {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-dots:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.card-title {
+  font-weight: bold;
+}
