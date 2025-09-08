@@ -6,7 +6,7 @@ import { Wishlist } from "./components/wishlist/wishlist";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Wishlist],
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
