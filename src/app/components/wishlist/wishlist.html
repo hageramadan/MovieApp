@@ -1,22 +1,27 @@
-<div class="card-container">
-  <div class="card" *ngFor="let movie of movies | slice:0:4">
-    <div class="card-content">
-      <img [src]="baseBosterUrl+movie.poster_path" alt="{{ movie.title }} Poster" class="card-img" loading="lazy">
-      <div class="card-body">
-        <div class="title-header">
-          <h3 class="card-title">{{ movie.title }}</h3>
-          <span class="favorite-btn"><i class="bi bi-heart-fill"></i></span>
+<div class="wishlist-container">
+  <div class="container">
+    <h1 class="page-title">Watch list</h1>
+    <div class="card-grid">
+      <div class="card" *ngFor="let movie of movies | slice:0:4">
+        <div class="card-content">
+          <img [src]="baseBosterUrl+movie.poster_path" alt="{{ movie.title }} Poster" class="card-img" loading="lazy">
+          <div class="card-body">
+            <div class="title-header">
+              <h3 class="card-title">{{ movie.title }}</h3>
+              <span class="favorite-btn"><i class="bi bi-heart-fill"></i></span>
+            </div>
+            <p class="release-date">{{ movie.release_date | date}}</p>
+            <div class="star-rating">
+              <span class="bi bi-star-fill"></span>
+              <span class="bi bi-star-fill"></span>
+              <span class="bi bi-star-half"></span>
+              <span class="bi bi-star"></span>
+              <span class="bi bi-star"></span>
+              <span class="rating-value">{{ movie.vote_average }}</span>
+            </div>
+            <p class="card-text">{{ movie.overview }}</p>
+          </div>
         </div>
-        <p class="release-date">{{ movie.release_date | date}}</p>
-        <div class="star-rating">
-          <span class="bi bi-star-fill"></span>
-          <span class="bi bi-star-fill"></span>
-          <span class="bi bi-star-half"></span>
-          <span class="bi bi-star"></span>
-          <span class="bi bi-star"></span>
-          <span class="rating-value">{{ movie.vote_average }}</span>
-        </div>
-        <p class="card-text">{{ movie.overview }}</p>
       </div>
     </div>
   </div>
