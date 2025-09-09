@@ -7,16 +7,16 @@
 }
 
 .card {
-  max-width: 512px; /* max-w-lg from Tailwind */
-  height: 192px; /* h-48 to match image height */
+  max-width: 600px; /* Increased width to match image */
+  min-height: 280px; /* Increased height */
   border-radius: 16px; /* rounded-2xl */
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
   font-family: 'Roboto', sans-serif;
   position: relative;
   overflow: hidden;
   background: #fff;
   display: flex;
-  padding: 16px; /* p-4 */
+  padding: 20px; /* Increased padding */
 }
 
 .card-content {
@@ -27,12 +27,13 @@
 }
 
 .card-img {
-  width: 128px; /* w-32 */
-  height: 192px; /* h-48 */
+  width: 140px; /* Slightly larger to match image */
+  height: 200px; /* Taller to match proportions */
   object-fit: cover;
   border-radius: 12px; /* rounded-xl */
-  margin-right: 16px; /* ml-4 converted to margin-right for flex layout */
+  margin-right: 20px; /* More spacing */
   position: relative;
+  flex-shrink: 0;
 }
 
 .card-img .favorite-badge {
@@ -47,21 +48,39 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 0;
+  gap: 8px;
+}
+
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 8px;
 }
 
 .card-title {
-  font-size: 24px; /* text-2xl */
+  font-size: 28px; /* Larger title to match image */
   font-weight: 700;
-  color: #4a5568; /* text-gray-800 */
-  margin-bottom: 4px;
+  color: #1a202c; /* Darker color */
+  margin: 0;
+  flex: 1;
 }
 
 .favorite-btn {
-  font-size: 24px;
-  color: #f59e0b; /* text-yellow-400 */
+  font-size: 28px; /* Larger heart icon */
+  color: #fbbf24; /* Yellow color to match image */
   cursor: pointer;
+  margin-left: 16px;
+  flex-shrink: 0;
+}
+
+.favorite-btn:hover {
+  color: #f59e0b;
+  transform: scale(1.1);
+  transition: all 0.2s ease;
 }
 
 .release-date {
