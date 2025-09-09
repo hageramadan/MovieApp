@@ -1,0 +1,122 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 16px;
+}
+
+.card {
+  max-width: 512px; /* max-w-lg from Tailwind */
+  height: 192px; /* h-48 to match image height */
+  border-radius: 16px; /* rounded-2xl */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  padding: 16px; /* p-4 */
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.card-img {
+  width: 128px; /* w-32 */
+  height: 192px; /* h-48 */
+  object-fit: cover;
+  border-radius: 12px; /* rounded-xl */
+  margin-right: 16px; /* ml-4 converted to margin-right for flex layout */
+  position: relative;
+}
+
+.card-img .favorite-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 24px;
+  color: #FFD700;
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.card-title {
+  font-size: 24px; /* text-2xl */
+  font-weight: 700;
+  color: #4a5568; /* text-gray-800 */
+  margin-bottom: 4px;
+}
+
+.favorite-btn {
+  font-size: 24px;
+  color: #f59e0b; /* text-yellow-400 */
+  cursor: pointer;
+}
+
+.release-date {
+  font-size: 14px; /* text-sm */
+  color: #a0aec0; /* text-gray-500 */
+  margin-top: 4px; /* mt-1 */
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px; /* mt-2 */
+}
+
+.star-rating .bi {
+  font-size: 16px;
+}
+
+.star-rating .bi-star-fill {
+  color: #f59e0b; /* text-yellow-400 */
+}
+
+.star-rating .bi-star {
+  color: #e5e7eb; /* text-gray-300 */
+}
+
+.rating-value {
+  font-size: 14px; /* text-sm */
+  color: #718096; /* text-gray-600 */
+  margin-left: 8px;
+}
+
+.card-text {
+  font-size: 14px; /* text-sm */
+  color: #718096; /* text-gray-600 */
+  line-height: 1.625; /* leading-relaxed */
+  margin-top: 12px; /* mt-3 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 900px) {
+  .card-container {
+    justify-content: flex-start;
+  }
+  .card {
+    flex: 0 0 calc(50% - 12px); /* Two cards per row with gap adjustment */
+  }
+}

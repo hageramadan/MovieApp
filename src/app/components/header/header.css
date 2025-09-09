@@ -1,0 +1,24 @@
+nav{
+    background-color: var(--primary-color);
+    margin-bottom: 10%;
+}
+.watch{
+    font-size: 15px;
+    position: relative;
+}
+.num-fav{
+    color: var(--black-color);
+    font-size: 12px;
+    position: absolute;
+    top:1%;
+    left:99%;
+    background-color: var(--white-color);
+    padding: 0.1rem 0.5rem;
+    border-radius: 5px;
+   
+}
+.icon-hh{
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--third-color);
+}
