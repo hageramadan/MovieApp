@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { WatchlistI } from '../../models/watchlist-i';
+import { getStarArray, calculateStars } from '../../utils/star-calculator';
 
 @Component({
   selector: 'app-wishlist',
@@ -10,6 +11,16 @@ import { WatchlistI } from '../../models/watchlist-i';
 })
 export class Wishlist {
   baseBosterUrl: string = 'https://image.tmdb.org/t/p/w185/';
+  
+  // Helper methods for star calculation
+  getStarArray(voteAverage: number): string[] {
+    return getStarArray(voteAverage);
+  }
+  
+  getStarRating(voteAverage: number) {
+    return calculateStars(voteAverage);
+  }
+  
   movies: WatchlistI[] = [
     {
       adult: false,
