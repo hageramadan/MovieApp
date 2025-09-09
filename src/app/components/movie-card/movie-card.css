@@ -1,7 +1,9 @@
 .movie-card img {
   border-radius: 10px;
 }
-
+.shadowcard{
+  box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.411);
+}
 .rating-circle {
   position: absolute;
   bottom: -15px;

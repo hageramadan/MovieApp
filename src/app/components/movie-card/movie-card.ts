@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-movie-card',
@@ -7,9 +7,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './movie-card.css'
 })
 export class MovieCard {
+   @Input() movie: any;
    constructor(private snackBar: MatSnackBar) {}
  openSnackBar() {
-    this.snackBar.open('Saved to wishlist ✅', 'close', {
+    this.snackBar.open('Saved to watchlist', 'X', {
       duration: 3000, // مدة الظهور بالمللي ثانية
       horizontalPosition: 'right', // start | center | end | left | right
       verticalPosition: 'top',  

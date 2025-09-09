@@ -3,9 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { Header } from './components/header/header';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header , MatSnackBarModule],
+  imports: [RouterOutlet, Header , MatSnackBarModule ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

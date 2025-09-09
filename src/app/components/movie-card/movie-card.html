@@ -1,10 +1,10 @@
-<div class="col-6 col-md-4 col-lg-2 mb-4">
-  <div class="card movie-card border-0">
+
+  <div class="card movie-card border-0 shadowcard mb-4">
     <div class="position-relative">
       <img
-        src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+         [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
         class="card-img-top rounded"
-        alt="The Dark Knight"
+        alt={{movie.title}}
       />
 
       <!-- Rating Circle -->
@@ -21,11 +21,11 @@
     </div>
 
     <div class="card-body p-4">
-      <h6 class="card-title mb-1 fw-bold">The Dark Knight</h6>
+      <h6 class="card-title mb-1 fw-bold">{{movie.title}}</h6>
       <div class="d-flex justify-content-between align-items-center">
-        <p class="card-text text-muted small">Jul 18, 2008</p>
+        <p class="card-text text-muted small">{{movie.release_date}}</p>
         <i class="bi bi-heart fs-5" (click)="openSnackBar()"></i>
       </div>
     </div>
   </div>
-</div>
+
