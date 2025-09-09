@@ -2,6 +2,7 @@
 /* /* You can add global styles to this file, and also import other style files / */
 :root{
     --primary-color:#FFE353;
+    --primary2-color:#ffd500;
     --second-color:#858585;
     --third-color:#292D32;
     --black-color:#000;
@@ -45,7 +46,32 @@ body.dark-mode .card
   background-color: transparent !important;
 }
 body.dark-mode nav{
-   background-color:#0000008f !important;
+   background-color:var(--black-color) !important;
 
 }
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.custom-snackbar {
+  margin-top: 4rem !important; /* تبعيد الـ snackbar عن الأعلى */
+}
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background:transparent;
+  border: none;
+ 
+  cursor: pointer;
+
+}
+
+.iconup:hover {
+  color:var(--primary-color);
+}
+.iconup{
+  font-size: 2.4rem;
+  color: var(--primary2-color);
+  transition: background 0.3s ease;
+}
