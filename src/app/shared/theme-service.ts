@@ -15,7 +15,8 @@ export class ThemeService {
     isDarkMode(): boolean {
     return this.darkMode;
   }
-
+ 
+  
   toggleTheme() {
     this.darkMode = !this.darkMode;
 
