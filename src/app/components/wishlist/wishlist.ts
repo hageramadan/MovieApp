@@ -30,9 +30,9 @@ export class Wishlist {
 
 
       this.watchlistHttpClient
-      .getWatchlist('22295239', '96c319316580e13570710c02cf3577792085d514', 1)
+      .removefromWatchList("movie",600,this.userCredtional.accountId,this.userCredtional.sessionId)
       .subscribe((responce) => {
-        console.log(responce);
+        console.log("add status",responce);
         this.movies = responce.results;
       });
   }
