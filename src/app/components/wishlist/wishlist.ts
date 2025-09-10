@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { WatchlistI } from '../../models/watchlist-i';
 import { getStarArray, calculateStars } from '../../utils/star-calculator';
 import { Watchlist } from '../../shared/watchlist';
+import {UserCredtionalI} from "../../shared/user-credtional-i"
 
 @Component({
   selector: 'app-wishlist',
@@ -11,17 +12,19 @@ import { Watchlist } from '../../shared/watchlist';
   styleUrl: './wishlist.css',
 })
 export class Wishlist {
-  constructor(public watchlistHttpClient: Watchlist) {}
+  constructor(public watchlistHttpClient: Watchlist , public userCredtional:UserCredtionalI) {}
   baseBosterUrl: string = 'https://image.tmdb.org/t/p/w185/';
   movies: WatchlistI[] = [];
   // Helper methods for star calculation
 
 
   ngOnInit(): void {
+    this.userCredtional.accountId = '22295239'
+    this.userCredtional.sessionId = "96c319316580e13570710c02cf3577792085d514"
     this.watchlistHttpClient
-      .getWatchlist('22295239', '96c319316580e13570710c02cf3577792085d514', 1)
+      .getWatchlist(<string>this.userCredtional.accountId, <string>this.userCredtional.sessionId, 1)
       .subscribe((responce) => {
-        console.log(responce);
+        console.log({responce , accountId : this.userCredtional.accountId , sessionID:this.userCredtional.sessionId});
         this.movies = responce.results;
       });
 

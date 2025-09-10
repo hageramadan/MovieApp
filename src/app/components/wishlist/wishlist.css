@@ -1,7 +1,6 @@
 /* Main container */
 .wishlist-container {
   min-height: 100vh;
-  background-color: #f8fafc;
   padding: 20px 0;
 }
 
@@ -66,7 +65,7 @@
   top: 8px;
   right: 8px;
   font-size: 24px;
-  color: #FFD700;
+  color: #ffd700;
 }
 
 .card-body {
@@ -165,31 +164,31 @@
   .container {
     padding: 0 12px;
   }
-  
+
   .page-title {
     font-size: 1.875rem; /* 30px */
     margin-bottom: 1.5rem;
   }
-  
+
   .card {
     padding: 16px;
     min-height: 240px;
   }
-  
+
   .card-img {
     width: 100px;
     height: 150px;
     margin-right: 12px;
   }
-  
+
   .card-title {
     font-size: 20px;
   }
-  
+
   .favorite-btn {
     font-size: 20px;
   }
-  
+
   .card-text {
     font-size: 13px;
     -webkit-line-clamp: 2; /* Show only 2 lines on mobile */
@@ -201,26 +200,26 @@
   .container {
     padding: 0 20px;
   }
-  
+
   .page-title {
     font-size: 2.25rem; /* 36px */
   }
-  
+
   .card {
     padding: 18px;
     min-height: 260px;
   }
-  
+
   .card-img {
     width: 120px;
     height: 180px;
     margin-right: 16px;
   }
-  
+
   .card-title {
     font-size: 24px;
   }
-  
+
   .favorite-btn {
     font-size: 24px;
   }
@@ -232,27 +231,27 @@
     grid-template-columns: 1fr 1fr; /* 2 columns on tablet */
     gap: 20px;
   }
-  
+
   .page-title {
     font-size: 2.5rem; /* 40px */
     text-align: center;
   }
-  
+
   .card {
     padding: 20px;
     min-height: 280px;
   }
-  
+
   .card-img {
     width: 130px;
     height: 195px;
     margin-right: 18px;
   }
-  
+
   .card-title {
     font-size: 26px;
   }
-  
+
   .favorite-btn {
     font-size: 26px;
   }
@@ -264,27 +263,27 @@
     grid-template-columns: 1fr 1fr; /* 2 columns */
     gap: 24px;
   }
-  
+
   .page-title {
     font-size: 2.5rem;
     text-align: left;
   }
-  
+
   .card {
     padding: 20px;
     min-height: 280px;
   }
-  
+
   .card-img {
     width: 140px;
     height: 200px;
     margin-right: 20px;
   }
-  
+
   .card-title {
     font-size: 28px;
   }
-  
+
   .favorite-btn {
     font-size: 28px;
   }
@@ -296,35 +295,35 @@
     grid-template-columns: 1fr 1fr; /* 2 columns for better readability */
     gap: 30px;
   }
-  
+
   .container {
     max-width: 1400px; /* Wider container for large screens */
   }
-  
+
   .page-title {
     font-size: 3rem; /* 48px */
     text-align: left;
   }
-  
+
   .card {
     padding: 24px;
     min-height: 300px;
   }
-  
+
   .card-img {
     width: 150px;
     height: 220px;
     margin-right: 24px;
   }
-  
+
   .card-title {
     font-size: 30px;
   }
-  
+
   .favorite-btn {
     font-size: 30px;
   }
-  
+
   .card-text {
     font-size: 15px;
     -webkit-line-clamp: 4; /* Show more lines on large screens */
@@ -337,7 +336,7 @@
     grid-template-columns: 1fr 1fr 1fr; /* 3 columns on very large screens */
     gap: 32px;
   }
-  
+
   .container {
     max-width: 1600px;
   }
@@ -348,11 +347,11 @@
   .card {
     min-height: 200px;
   }
-  
+
   .card-img {
     height: 160px;
   }
-  
+
   .page-title {
     margin-bottom: 1rem;
   }

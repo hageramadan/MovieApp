@@ -1,23 +1,30 @@
 <div class="container">
-  <!-- Search Box -->
   <div class="d-flex my-4">
     <input
-      class="form-control me-2 search-input"
       type="search"
+      [(ngModel)]="searchQuery"
+      class="form-control me-2"
       placeholder="Search..."
       aria-label="Search"
+      (keydown.enter)="search()"
     />
-    <button type="submit" class="btn btn-warning search-btn">Search</button>
+    <button type="submit" class="btn btn-warning col-1" (click)="search()">Search</button>
   </div>
 
-  <!-- Results -->
-  <span class="search-result mb-4"
-    >Search Result for: <span class="search-keyword">Batman</span></span
-  >
+  @if(searchedQuery === '') {
+
+  } @else if (searchedQuery && searchResult.length === 0) {
+  <h2 class="text-center">No Result Found</h2>
+  } @else {
+  <span class="fw-bold">Search results for: </span>
+  <span>{{ searchedQuery }}</span>
 
   <div class="row">
-    <div class=" col-md-12 col-lg-12 mb-4" >
-      <app-movie-card ></app-movie-card>
+    @for (movie of searchResult; track $index) {
+    <div class="col-6 col-md-4 col-lg-2 mb-4">
+      <app-movie-card [movie]="movie"></app-movie-card>
     </div>
+    }
   </div>
+  }
 </div>
