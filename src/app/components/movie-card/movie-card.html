@@ -1,6 +1,10 @@
 <div class="card border-0 movie-card">
   <div class="position-relative">
-    <img [src]="getPoster(movie)" class="card-img rounded-4" alt="Movie Poster" />
+    <img
+      [src]="movie.poster_path ? getPoster(movie) : 'assets/not_found.png'"
+      class="card-img rounded-4"
+      alt="Movie Poster"
+    />
 
     <!-- Rating Circle -->
     <div class="rating-circle">
