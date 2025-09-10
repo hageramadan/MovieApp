@@ -24,6 +24,14 @@ export class Wishlist {
         console.log(responce);
         this.movies = responce.results;
       });
+
+
+      this.watchlistHttpClient
+      .getWatchlist('22295239', '96c319316580e13570710c02cf3577792085d514', 1)
+      .subscribe((responce) => {
+        console.log(responce);
+        this.movies = responce.results;
+      });
   }
 
 

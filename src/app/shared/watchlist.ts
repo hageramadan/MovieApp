@@ -20,4 +20,47 @@ export class Watchlist {
 
     return this.http.get(url, { headers });
   }
+
+  addtoWatchList(
+    media_type: string = 'movie',
+    media_id: number,
+    accountId: string,
+    sessionId: string
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+      Accept: 'application/json',
+    });
+
+    const body = {
+      media_type,
+      media_id,
+      watchlist: true,
+    };
+
+    const url = `${this.apiUrl}/account/${accountId}/watchlist?session_id=${sessionId}`;
+    return this.http.post(url, body, { headers: headers });
+  }
+
+
+  removefromWatchList(
+    media_type: string = 'movie',
+    media_id: number,
+    accountId: string,
+    sessionId: string
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+      Accept: 'application/json',
+    });
+
+    const body = {
+      media_type,
+      media_id,
+      watchlist: false,
+    };
+
+    const url = `${this.apiUrl}/account/${accountId}/watchlist?session_id=${sessionId}`;
+    return this.http.post(url, body, { headers: headers });
+  }
 }
