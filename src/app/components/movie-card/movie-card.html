@@ -1,31 +1,35 @@
+<div class="card border-0 movie-card">
+  <div class="position-relative">
+    <img [src]="getPoster(movie)" class="card-img rounded-4" alt="Movie Poster" />
 
-  <div class="card movie-card border-0 shadowcard mb-4">
-    <div class="position-relative">
-      <img
-         [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-        class="card-img-top rounded"
-        alt={{movie.title}}
-      />
-
-      <!-- Rating Circle -->
-      <div class="rating-circle" style="--progress: 70">
-        <span>70%</span>
-      </div>
-
-      <!-- 3 dots -->
-      <div class="position-absolute top-0 end-0 m-2">
-        <button class="btn btn-dots rounded-circle" >
-          <i class="bi bi-three-dots fs-5 fw-bold" ></i>
-        </button>
-      </div>
+    <!-- Rating Circle -->
+    <div class="rating-circle">
+      <span>{{ movie.vote_average | number : '1.1-1' }}</span>
     </div>
 
-    <div class="card-body p-4">
-      <h6 class="card-title mb-1 fw-bold">{{movie.title}}</h6>
-      <div class="d-flex justify-content-between align-items-center">
-        <p class="card-text text-muted small">{{movie.release_date}}</p>
-        <i class="bi bi-heart fs-5" (click)="openSnackBar()"></i>
-      </div>
+    <!-- 3 dots -->
+    <div class="position-absolute top-0 end-0 m-2">
+      <button class="btn-dots rounded-circle">
+        <i class="bi bi-three-dots"></i>
+      </button>
     </div>
   </div>
 
+  <div class="card-body">
+    <h3 class="card-title">{{ movie.title }}</h3>
+    <div class="d-flex justify-content-between">
+      <p class="card-text my-auto">
+        {{ movie.release_date | date : 'mediumDate' }}
+      </p>
+      <a (click)="toggleFavorite()" (click)="openSnackBar()" style="cursor: pointer"
+        ><i
+          [ngClass]="
+            isFavorite
+              ? 'fa-solid fa-heart text-warning h4 my-auto'
+              : 'fa-regular fa-heart text-warning h4 my-auto'
+          "
+        ></i
+      ></a>
+    </div>
+  </div>
+</div>
