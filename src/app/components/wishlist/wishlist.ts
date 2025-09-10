@@ -30,7 +30,7 @@ export class Wishlist {
 
 
       this.watchlistHttpClient
-      .removefromWatchList("movie",600,this.userCredtional.accountId,this.userCredtional.sessionId)
+      .removefromWatchList("movie",600,<string>this.userCredtional.accountId,<string>this.userCredtional.sessionId)
       .subscribe((responce) => {
         console.log("add status",responce);
         this.movies = responce.results;
