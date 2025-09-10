@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { WatchlistI } from '../../models/watchlist-i';
+import { getStarArray, calculateStars } from '../../utils/star-calculator';
+import { Watchlist } from '../../shared/watchlist';
 
 @Component({
   selector: 'app-wishlist',
@@ -8,34 +11,27 @@ import { Component } from '@angular/core';
   styleUrl: './wishlist.css',
 })
 export class Wishlist {
-  movies = [
-    {
-      title: 'Black Widow',
-      date: 'Sep 25, 2017',
-      rating: 9288,
-      description: 'Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by...',
-      poster: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRqjJ87P-OJLGPvTnWZ4RrVsYDv3lLdO_Gbt38cbW6U8bIhazqE',
-    },
-    {
-      title: 'Black Widow',
-      date: 'Sep 25, 2017',
-      rating: 9288,
-      description: 'Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by...',
-      poster: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRqjJ87P-OJLGPvTnWZ4RrVsYDv3lLdO_Gbt38cbW6U8bIhazqE',
-    },
-    {
-      title: 'Black Widow',
-      date: 'Sep 25, 2017',
-      rating: 9288,
-      description: 'Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by...',
-      poster: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRqjJ87P-OJLGPvTnWZ4RrVsYDv3lLdO_Gbt38cbW6U8bIhazqE',
-    },
-    {
-      title: 'Black Widow',
-      date: 'Sep 25, 2017',
-      rating: 9288,
-      description: 'Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by...',
-      poster: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRqjJ87P-OJLGPvTnWZ4RrVsYDv3lLdO_Gbt38cbW6U8bIhazqE',
-    },
-  ];
+  constructor(public watchlistHttpClient: Watchlist) {}
+  baseBosterUrl: string = 'https://image.tmdb.org/t/p/w185/';
+  movies: WatchlistI[] = [];
+  // Helper methods for star calculation
+
+
+  ngOnInit(): void {
+    this.watchlistHttpClient
+      .getWatchlist('22295239', '96c319316580e13570710c02cf3577792085d514', 1)
+      .subscribe((responce) => {
+        console.log(responce);
+        this.movies = responce.results;
+      });
+  }
+
+
+  getStarArray(voteAverage: number): string[] {
+    return getStarArray(voteAverage);
+  }
+
+  getStarRating(voteAverage: number) {
+    return calculateStars(voteAverage);
+  }
 }

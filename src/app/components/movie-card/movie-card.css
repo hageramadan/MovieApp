@@ -1,43 +1,48 @@
 .movie-card img {
-  border-radius: 10px;
+  border-radius: 12px;
+  object-fit: cover;
+  height: 280px; /* سبّت الطول عشان الكروت كلها تبقى قد بعض */
 }
-
+.shadowcard{
+  box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.411);
+}
 .rating-circle {
   position: absolute;
   bottom: -15px;
   left: 10px;
-  background: black;
+  background: #000;
   border-radius: 50%;
-  border: 3px solid #1db954; /* أخضر زي اللي في الصورة */
+  border: 3px solid #1db954;
   width: 45px;
   height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  color: #1db954;
-  font-size: 14px;
-  --progress: 0;
+  color: white;
+  font-size: 13px;
 }
+
 .rating-circle span {
-  position: absolute;
   color: white;
 }
 
+/* Heart Icon */
 .bi-heart,
 .bi-heart-fill {
-  color: black;
+  color: #666;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .bi-heart:hover,
 .bi-heart-fill:hover {
-  color: yellow;
+  color: #e50914;
 }
 
+/* 3 dots btn */
 .btn-dots {
-  background-color: rgba(0, 0, 0, 0.5); /* شفاف */
+  background-color: rgba(0, 0, 0, 0.6);
   border: none;
   color: white !important;
   width: 32px;
@@ -47,15 +52,16 @@
   justify-content: center;
 }
 
-.btn-dots i {
-  font-size: 18px;
-  line-height: 1;
-}
-
 .btn-dots:hover {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* Title */
 .card-title {
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
