@@ -1,1 +1,128 @@
+<header class="hero-section">
+  <div class="hero-content container">
+    <h1 class="display-4 fw-bold">Welcome to Our Movie Best</h1>
+    <p class="lead">maillons of movies TV shows and people to discover Explore now</p>
+    <form class="d-flex justify-content-center mt-3" role="search">
+      <input
+        class="form-control w-50 me-2"
+        type="search"
+        placeholder="Search..."
+        aria-label="Search"
+      />
+      <button class="btn btn-warning" type="submit">Search</button>
+    </form>
+  </div>
+</header>
+<!-- <Section>
+  <div class="container mt-5">
+    <div class="row g-5">
+ 
+   
+   @for (movie of trendingMovies; track $index) {
+      <div class="col-md-4 col-lg-3">
+        <div class="movie-card">
+           <div class="poster-wrapper">
+    <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="Movie Poster">
+    <div class="rating">85</div>
+  </div>
+         
+          <div class="position-absolute top-0 end-0 m-2">
+            <button class="btn btn-dots rounded-circle">
+              <i class="bi bi-three-dots fs-5 fw-bold"></i>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="title">{{movie.original_title}}</div>
+            <div class="date">Sep 25, 2017</div>
+          </div>
+          <div class="favorite"><i class="bi bi-heart"></i></div>
+        </div>
+      </div>
+   }
+    
+   
+     
+    </div>
+  </div>
+</Section> -->
+<div class="container mt-5">
 
+  <!-- Trending Movies -->
+  <h2 class="mb-3">Trending Movies</h2>
+  <div class="row g-4 mb-5">
+    <div class="col-md-3" *ngFor="let movie of trendingMovies">
+      <div class="movie-card">
+        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+        
+        <div class="rating">{{ movie.vote_average }}</div>
+        <div class="card-body">
+          <div class="title">{{ movie.title }}</div>
+          <div class="date">{{ movie.release_date }}</div>
+          
+            <!-- <i class="bi bi-heart-fill fs-5"></i> -->
+          <div class="favorite"> <i class="bi bi-heart fs-5"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular Movies -->
+  <h2 class="mb-3">Popular Movies</h2>
+  <div class="row g-4 mb-5">
+    <div class="col-md-3" *ngFor="let movie of popularMovies">
+      <div class="movie-card">
+    
+              <div class="favorite">
+                 <i class="bi bi-heart fs-5"></i></div>
+        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+        <div class="rating">{{ movie.vote_average }}</div>
+        <div class="card-body">
+          <div class="title">{{ movie.title }}</div>
+          <div class="date">{{ movie.release_date }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Rated Movies -->
+  <h2 class="mb-3">Top Rated Movies</h2>
+  <div class="row g-4 mb-5">
+    <div class="col-md-3" *ngFor="let movie of topRatedMovies">
+      <div class="movie-card">
+  
+              <div class="favorite"> <i class="bi bi-heart fs-5"></i></div>
+        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+        <div class="rating">{{ movie.vote_average }}</div>
+        <div class="card-body">
+          <div class="title">{{ movie.title }}</div>
+          <div class="date">{{ movie.release_date }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  Upcoming Movies
+  <h2 class="mb-3">Upcoming Movies</h2>
+  <div class="row g-4 mb-5">
+    <div class="col-md-3" *ngFor="let movie of upcomingMovies">
+      <div class="movie-card">
+            <div class="favorite"> <i class="bi bi-heart fs-5"></i></div>
+        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+        <div class="rating">{{ movie.vote_average }}</div>
+        <div class="card-body">
+          <div class="title">{{ movie.title }}</div>
+          <div class="date">{{ movie.release_date }}</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+
+
+ 
+
+
+</div>
