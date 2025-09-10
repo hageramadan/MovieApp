@@ -13,7 +13,7 @@ import { UserCredtionalI } from '../../shared/user-credtional-i';
 })
 export class Wishlist {
   constructor(public watchlistHttpClient: Watchlist, public userCredtional: UserCredtionalI) {}
-  baseBosterUrl: string = 'https://image.tmdb.org/t/p/w185/';
+  baseBosterUrl: string = 'https://image.tmdb.org/t/p/w500/';
   movies: WatchlistI[] = [];
   // Helper methods for star calculation
 
