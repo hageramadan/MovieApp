@@ -9,10 +9,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './movie-card.css',
 })
 export class MovieCard {
-  @Input() movie: any;
+  @Input() movie?: any;
+  @Input() trendingMovies?: any[] = [];
+  @Input() popularMovies?: any[] = [];
+  @Input() topRatedMovies?: any[] = [];
+  @Input() upcomingMovies?: any[] = [];
   isFavorite: boolean = false;
   constructor(private snackBar: MatSnackBar, private router: Router) {}
-
   getPoster(movie: any) {
     return `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   }
