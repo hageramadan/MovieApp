@@ -1,1 +1,43 @@
-<p>login works!</p>
+<form class="m-auto d-flex shadow " style=" width: 50%; ">
+  <div class="image w-50 ">
+    <img class="w-100 h-100 " src="2.jpg" alt="login page" />
+  </div>
+  <div class="loginForm m-auto w-100 p-4 " >
+    <div class="headtitle mb-2 m-4 p-1">
+      <h3>Welcome Back,</h3>
+      <p>Sign to your account</p>
+    </div>
+
+    <div class="ms-4 me-5 mb-3">
+      <label for="exampleInputEmail1">Username</label>
+      <input
+        type="email"
+        placeholder="Enter your Username"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <div class="ms-4 me-5">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Enter your password"
+      />
+    </div>
+     <div class=" p-4 text-center">
+     
+    </div>
+    
+
+    <div class="loginBtn ms-4 me-5">
+      <button type="submit" class="btn btn-warning  w-100">Sign In</button><br /><br />
+    </div>
+
+    <div id="emailHelp" class="form-text ms-4 text-center">
+      if you don't have an account? <a style="color: orange" routerLink="../register">Sign Up</a>
+    </div>
+  </div>
+</form>

@@ -1,12 +1,11 @@
 import { Component, signal , HostListener  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Header } from './components/header/header';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { Home } from "./components/home/home";
+import { Header } from "./components/header/header";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header , MatSnackBarModule ],
+  imports: [RouterOutlet , Header],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
