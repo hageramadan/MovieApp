@@ -22,8 +22,6 @@ export class Login {
       .subscribe({
         next: (tokenRes) => {
           const requestToken = tokenRes.request_token;
-
-        
           const loginPayload = {
             username: this.username,
             password: this.password,
