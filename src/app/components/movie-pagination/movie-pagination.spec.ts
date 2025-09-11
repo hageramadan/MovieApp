@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home';
+import { MoviePagination } from './movie-pagination';
 
-describe('Home', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('MoviePagination', () => {
+  let component: MoviePagination;
+  let fixture: ComponentFixture<MoviePagination>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent]
+      imports: [MoviePagination]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(MoviePagination);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

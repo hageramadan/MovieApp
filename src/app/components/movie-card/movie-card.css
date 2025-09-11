@@ -1,43 +1,19 @@
 .movie-card img {
   border-radius: 12px;
   object-fit: cover;
-  height: 280px; /* سبّت الطول عشان الكروت كلها تبقى قد بعض */
+  height: 280px;
 }
-.shadowcard{
+
+.shadowcard {
   box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.411);
 }
-.rating-circle {
+
+/* Rating Circle Component */
+.circle {
   position: absolute;
-  bottom: -15px;
+  bottom: -18px;
   left: 10px;
-  background: #000;
-  border-radius: 50%;
-  border: 3px solid #1db954;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  color: white;
-  font-size: 13px;
-}
-
-.rating-circle span {
-  color: white;
-}
-
-/* Heart Icon */
-.bi-heart,
-.bi-heart-fill {
-  color: #666;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.bi-heart:hover,
-.bi-heart-fill:hover {
-  color: #e50914;
+  z-index: 2;
 }
 
 /* 3 dots btn */
@@ -63,5 +39,5 @@
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
 }
