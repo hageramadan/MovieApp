@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './components/home/home';
-import { Login } from './components/login/login';
+import { login } from './components/login/login';
 import { Register } from './components/register/register';
 import { Wishlist } from './components/wishlist/wishlist';
 import { Search } from './components/search/search';
@@ -10,7 +10,7 @@ import { NotFound } from './components/not-found/not-found';
 
 export const routes: Routes = [
     {path:'',component:Home},
-    {path:'login',component:Login},
+    {path:'login',component:login},
     {path:'register',component:Register},
     {path:'wishlist',component:Wishlist},
     {path:'search',component:Search},

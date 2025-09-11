@@ -2,7 +2,7 @@
 
 
 
-<form  class="m-auto d-flex shadow " style=" width: 50%; ">
+<form (ngSubmit)="login()" class="m-auto d-flex shadow " style=" width: 50%; ">
   <div class="image w-50 ">
     <img class="w-100  " src="2.jpg" alt="login page" />
   </div>
@@ -18,8 +18,11 @@
         type="email"
         placeholder="Enter your Username"
         class="form-control"
+         [(ngModel)]="user.username"
         id="exampleInputEmail1"
+        name="username"
         aria-describedby="emailHelp"
+       
       />
        <label for="exampleInputEmail1">Username</label>
     </div>
@@ -32,7 +35,9 @@
       <input
         type="password"
         class="form-control"
+        [(ngModel)]="user.password"
         id="exampleInputPassword1"
+        name="password"
         placeholder="Enter your password"
       />
       <label for="password">Password</label>
