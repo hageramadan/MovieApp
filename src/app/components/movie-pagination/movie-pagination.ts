@@ -18,4 +18,19 @@ export class PaginationComponent {
       this.pageChange.emit(page);
     }
   }
+  getPages(): number[] {
+  const pages: number[] = [];
+  const start = Math.max(2, this.currentPage - 2);
+  const end = Math.min(this.totalPages - 1, this.currentPage + 2);
+
+  for (let i = start; i <= end; i++) {
+    pages.push(i);
+  }
+
+  return pages;
 }
+}
+
+
+
+

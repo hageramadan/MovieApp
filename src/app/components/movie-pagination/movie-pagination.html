@@ -1,22 +1,56 @@
-<nav *ngIf="totalPages > 1">
-  <ul class="pagination justify-content-center">
+<nav *ngIf="totalPages > 1" class="pagination-container">
+  <ul class="pagination-list">
+
     <!-- Previous -->
-    <li class="page-item" [class.disabled]="currentPage === 1">
-        <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
+    <li>
+      <button 
+        class="page-btn nav-btn" 
+        [disabled]="currentPage === 1"
+        (click)="changePage(currentPage - 1)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
     </li>
 
-    <!-- Current Page -->
-    <li class="page-item active">
-      <span class="page-link">
-        {{ currentPage }} / {{ totalPages }}
-      </span>
+    <!-- First Page -->
+    <li>
+      <button 
+        class="page-btn" 
+        [class.active]="currentPage === 1"
+        (click)="changePage(1)">
+        1
+      </button>
     </li>
+
+    <!-- Dots before current -->
+    <li *ngIf="currentPage > 4">
+      <span class="dots">...</span>
+    </li>
+
+    <!-- Pages around current -->
+    <li *ngFor="let page of getPages()">
+      <button 
+        class="page-btn" 
+        [class.active]="currentPage === page"
+        (click)="changePage(page)">
+        {{ page }}
+      </button>
+    </li>
+
+    <!-- Dots after current -->
+    <li *ngIf="currentPage < totalPages - 3">
+      <span class="dots">...</span>
+    </li>
+
+   
 
     <!-- Next -->
-    <li class="page-item" [class.disabled]="currentPage === totalPages">
-      <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+    <li>
+      <button 
+        class="page-btn nav-btn" 
+        [disabled]="currentPage === totalPages"
+        (click)="changePage(currentPage + 1)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </li>
   </ul>
 </nav>
-
-
