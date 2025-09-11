@@ -1,24 +1,19 @@
-<nav *ngIf="totalPages > 1" class="pagination-container">
+<section *ngIf="totalPages > 1" class="pagination-container">
   <ul class="pagination-list">
-
     <!-- Previous -->
     <li>
-      <button 
-        class="page-btn nav-btn" 
+      <button
+        class="page-btn nav-btn"
         [disabled]="currentPage === 1"
-        (click)="changePage(currentPage - 1)">
+        (click)="changePage(currentPage - 1)"
+      >
         <i class="fas fa-chevron-left"></i>
       </button>
     </li>
 
     <!-- First Page -->
     <li>
-      <button 
-        class="page-btn" 
-        [class.active]="currentPage === 1"
-        (click)="changePage(1)">
-        1
-      </button>
+      <button class="page-btn" [class.active]="currentPage === 1" (click)="changePage(1)">1</button>
     </li>
 
     <!-- Dots before current -->
@@ -28,10 +23,7 @@
 
     <!-- Pages around current -->
     <li *ngFor="let page of getPages()">
-      <button 
-        class="page-btn" 
-        [class.active]="currentPage === page"
-        (click)="changePage(page)">
+      <button class="page-btn" [class.active]="currentPage === page" (click)="changePage(page)">
         {{ page }}
       </button>
     </li>
@@ -41,16 +33,15 @@
       <span class="dots">...</span>
     </li>
 
-   
-
     <!-- Next -->
     <li>
-      <button 
-        class="page-btn nav-btn" 
+      <button
+        class="page-btn nav-btn"
         [disabled]="currentPage === totalPages"
-        (click)="changePage(currentPage + 1)">
+        (click)="changePage(currentPage + 1)"
+      >
         <i class="fas fa-chevron-right"></i>
       </button>
     </li>
   </ul>
-</nav>
+</section>
