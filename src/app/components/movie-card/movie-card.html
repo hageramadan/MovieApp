@@ -6,9 +6,8 @@
       alt="Movie Poster"
     />
     <!-- Rating Circle -->
-    <div class="rating-circle">
-      <span>{{ movie.vote_average | number : '1.1-1' }}</span>
-    </div>
+    <app-rating-circle class="circle position-absolute" [percent]="movieRatingPercent(movie)">
+    </app-rating-circle>
 
     <!-- 3 dots -->
     <div class="position-absolute top-0 end-0 m-2">
@@ -17,7 +16,7 @@
       </button>
     </div>
   </div>
-  <div class="card-body">
+  <div class="card-body mt-3">
     <h3 class="card-title">{{ movie.title }}</h3>
     <div class="d-flex justify-content-between">
       <p class="card-text my-auto">

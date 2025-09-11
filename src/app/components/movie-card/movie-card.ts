@@ -1,13 +1,14 @@
-import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Watchlist } from '../../shared/watchlist';
 import { UserCredtionalI } from '../../shared/user-credtional-i';
+import { RatingCircle } from '../rating-circle/rating-circle';
 
 @Component({
   selector: 'app-movie-card',
-  imports: [DatePipe, DecimalPipe, NgClass],
+  imports: [DatePipe, NgClass, RatingCircle],
   templateUrl: './movie-card.html',
   styleUrl: './movie-card.css',
 })
@@ -27,6 +28,10 @@ export class MovieCard {
   ) {}
   getPoster(movie: any) {
     return `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+  }
+
+  movieRatingPercent(movie: any) {
+    return Math.round(movie.vote_average * 10);
   }
 
   toggleFavorite() {
