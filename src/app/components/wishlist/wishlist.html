@@ -8,12 +8,12 @@
           <div class="card-body">
             <div class="title-header">
               <h3 class="card-title">{{ movie.title }}</h3>
-              <span class="favorite-btn"><i class="bi bi-heart-fill"></i></span>
+              <span class="favorite-btn" (click)="heartTrigger(movie)"><i class="bi bi-heart-fill"></i></span>
             </div>
             <p class="release-date">{{ movie.release_date | date}}</p>
             <div class="star-rating">
-              <span 
-                *ngFor="let star of getStarArray(movie.vote_average)" 
+              <span
+                *ngFor="let star of getStarArray(movie.vote_average)"
                 class="bi"
                 [ngClass]="{
                   'bi-star-fill': star === 'full',
