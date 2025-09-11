@@ -1,42 +1,26 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="">Movie App</a>
+<nav class="navbar navbar-expand-lg fixed-top ">
+  <div class="container-fluid px-5">
+    <a class="navbar-brand" routerLink="/">Movie App</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="login">login</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" routerLink="register">register</a>
-        </li> <li class="nav-item">
-          <a class="nav-link" routerLink="wishlist">wishlist</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" routerLink="account">account</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" routerLink="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            lang
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="">en</a></li>
-            <li><a class="dropdown-item" routerLink="">ar</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" routerLink="">fr</a></li>
-          </ul>
-        </li>
+       
        
       </ul>
-      <form class="d-flex" >
-        <input class="form-control me-2" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="button" routerLink="search">Search</button>
-      </form>
+        <div class="theme-toggle" style="cursor: pointer;" (click)="toggleTheme()">
+          <i [ngClass]="isDarkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
+        </div>
+      <button class="btn d-flex watch me-1" routerLink="wishlist">
+        <i class="fa-solid fa-heart icon-hh me-1"></i>
+        <a routerLink="wishlist">watchlist</a>
+        <p class="num-fav">5</p>
+      </button>
+      <button class="btn " routerLink="login">
+        <a routerLink="login" class="ms-3">Login</a>
+        <i class="fa-regular fa-circle-user  mx-1"></i>
+      </button>
     </div>
   </div>
 </nav>

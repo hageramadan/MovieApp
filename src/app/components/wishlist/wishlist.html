@@ -1,1 +1,32 @@
-<p>wishlist works!</p>
+<div class="wishlist-container">
+  <div class="container">
+    <h1 class="page-title">Watch list</h1>
+    <div class="card-grid">
+      <div class="card" *ngFor="let movie of movies">
+        <div class="card-content">
+          <img [src]="baseBosterUrl+movie.poster_path" alt="{{ movie.title }} Poster" class="card-img" loading="lazy">
+          <div class="card-body">
+            <div class="title-header">
+              <h3 class="card-title">{{ movie.title }}</h3>
+              <span class="favorite-btn" (click)="heartTrigger(movie)"><i class="bi bi-heart-fill"></i></span>
+            </div>
+            <p class="release-date">{{ movie.release_date | date}}</p>
+            <div class="star-rating">
+              <span
+                *ngFor="let star of getStarArray(movie.vote_average)"
+                class="bi"
+                [ngClass]="{
+                  'bi-star-fill': star === 'full',
+                  'bi-star-half': star === 'half',
+                  'bi-star': star === 'empty'
+                }">
+              </span>
+              <span class="rating-value">{{ movie.vote_average }}</span>
+            </div>
+            <p class="card-text">{{ movie.overview }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

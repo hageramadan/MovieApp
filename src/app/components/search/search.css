@@ -1,0 +1,122 @@
+/* /* ====== Search Bar ====== */
+.container .d-flex input[type='search'] {
+  border: 1px solid #d7d7d7;
+  border-radius: 10px;
+  height: 46px;
+  padding: 0 12px;
+  font-size: 15px;
+}
+
+.container .d-flex .btn {
+  border-radius: 10px;
+  height: 46px;
+  font-weight: 600;
+  padding: 0 20px;
+}
+
+/* ====== Messages ====== */
+h2.text-center {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 40px;
+  color: #444;
+}
+
+p {
+  font-weight: 500;
+  margin: 15px 0;
+}
+
+/* ====== Search Results Grid ====== */
+.row {
+  margin-top: 20px;
+}
+
+/* ====== Movie Card ====== */
+.movie-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.movie-card img {
+  border-radius: 12px;
+  object-fit: cover;
+  width: 100%;
+  height: 270px; /* سبّت الارتفاع عشان كل الكروت تطلع مظبوطة */
+}
+
+/* Rating Circle */
+.rating-circle {
+  position: absolute;
+  bottom: -15px;
+  left: 10px;
+  background: black;
+  border-radius: 50%;
+  border: 3px solid #1db954; /* الأخضر */
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #1db954;
+  font-size: 14px;
+}
+
+.rating-circle span {
+  position: absolute;
+  color: white;
+  font-weight: bold;
+}
+
+/* Dots Button */
+.btn-dots {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white !important;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-dots i {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-dots:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Wishlist Heart */
+.bi-heart,
+.bi-heart-fill {
+  color: black;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.bi-heart:hover,
+.bi-heart-fill:hover {
+  color: #ff4757;
+}
+
+/* Card Title */
+.card-title {
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

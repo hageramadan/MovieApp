@@ -1,2 +1,10 @@
 <app-header />
+<div style="margin-top: 5rem;">
 <router-outlet />
+</div>
+<!-- زر الرجوع لأعلى -->
+ @if(showButton){
+<button class="back-to-top"  (click)="scrollToTop()">
+  <i class="fa-solid fa-circle-arrow-up iconup"></i>
+</button>
+ }

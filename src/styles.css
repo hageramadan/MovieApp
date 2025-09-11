@@ -1,1 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* /* You can add global styles to this file, and also import other style files / */
+:root{
+    --primary-color:#FFE353;
+    --primary2-color:#ffd500;
+    --second-color:#858585;
+    --third-color:#292D32;
+    --black-color:#000;
+    --white-color:#fff;
+    --dark-mode:rgb(20 20 30);
+
+}
+a{
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+
+/* / الوضع العادي / */
+body {
+  background-color:var(--white-color);
+  color:var(--dark-color);
+  transition: all 0.3s ease-in-out;
+}
+
+/* / الوضع الداكن / */
+body.dark-mode {
+  background-color:var(--dark-mode) !important;
+  color: var(--white-color) !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode a,
+body.dark-mode i,
+body.dark-mode .icon-hh,
+body.dark-mode .btn-app ,
+body.dark-mode .card
+{
+  color: var(--white-color) !important;
+  background-color: transparent !important;
+}
+body.dark-mode nav{
+   background-color:var(--black-color) !important;
+
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.custom-snackbar {
+  margin-top: 4rem !important; /* تبعيد الـ snackbar عن الأعلى */
+}
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background:transparent;
+  border: none;
+ 
+  cursor: pointer;
+
+}
+
+.iconup:hover {
+  color:var(--primary-color);
+}
+.iconup{
+  font-size: 2.4rem;
+  color: var(--primary2-color);
+  transition: background 0.3s ease;
+}

@@ -1,1 +1,74 @@
-<p>movie-details works!</p>
+<section class="details mt-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-4 col-md-12">
+        <div class="text-center">
+          <img src="assets/det.png" class="img-res" alt="movies" />
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-12">
+        <div class="item ms-lg-3 mt-4">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h2>Black Widow</h2>
+              <p class="loremDate">Sep 25, 2017</p>
+            </div>
+            <div class="icon" (click)="toggleFavorite()">
+              <i [ngClass]="isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+            </div>
+          </div>
+          <div class="d-flex gap-5 mt-2">
+            <div class="stars">
+              @for(star of fillStar ; track fillStar){
+              <i class="fa-solid fa-star me-1"></i>
+              } @for(star of emptyStar ; track emptyStar){
+              <i class="fa-regular fa-star"></i>
+              }
+            </div>
+            <p>9288</p>
+          </div>
+
+          <div class="long-p">
+            <p>
+              Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger
+              when a dangerous conspiracy with ties to her past arises. Pursued by a force that will
+              stop at nothing to bring her down, Natasha must deal with her history as a spy and the
+              broken relationships left in her wake long before she became an Avenger.
+            </p>
+          </div>
+          <div class="d-flex">
+            <button class="btn btn-app">Action</button>
+            <button class="btn btn-app ms-3">Crime</button>
+            <button class="btn btn-app ms-3">Thriller</button>
+          </div>
+          <div class="d-flex gap-5 mt-4">
+            <div class="d-flex gap-3">
+              <h6>Duration:</h6>
+              <p>134 Min.</p>
+            </div>
+            <div class="d-flex gap-3">
+              <h6>Languages:</h6>
+              <p>English</p>
+            </div>
+          </div>
+          <div class="img-cart">
+            <img src="assets/marvel.png" alt="brand" />
+          </div>
+          <button
+            class="btn btn-app mt-4"
+            style="background-color: transparent; padding-left: 1rem; padding-right: 1rem"
+          >
+            Website <i class="fa-solid fa-link icons"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <h3 class="mt-5" style="font-size: 48px">Recomendations</h3>
+    <div class="row">
+      <div class="col-md-12">
+        <app-movie-card [movie]="movie"></app-movie-card>
+      </div>
+    </div>
+  </div>
+</section>
