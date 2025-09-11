@@ -24,11 +24,12 @@ export class Movie {
       `${this.baseUrl}/movie/now_playing?api_key=${this.apiKey}&language=en-US&page=1`
     );
   }
-  getTrendingMovies(time_window: 'day' | 'week' = 'day'): Observable<any> {
-    return this.http.get<any>(
-      `${this.baseUrl}/trending/movie/${time_window}?api_key=${this.apiKey}`
-    );
-  }
+getTrendingMovies(page: number = 1, time_window: 'day' | 'week' = 'day'): Observable<any> {
+  return this.http.get<any>(
+    `${this.baseUrl}/trending/movie/${time_window}?api_key=${this.apiKey}&page=${page}`
+  );
+}
+
 
   getPopularMovies(page: number = 1): Observable<any> {
     return this.http.get<any>(

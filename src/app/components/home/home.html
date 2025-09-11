@@ -1,7 +1,10 @@
+
 <header class="hero-section">
   <div class="hero-content container">
     <h1 class="display-4 fw-bold">Welcome to Our Movie Best</h1>
-    <p class="lead">maillons of movies TV shows and people to discover Explore now</p>
+    <p class="lead">
+      Millions of movies, TV shows and people to discover. Explore now
+    </p>
     <form class="d-flex justify-content-center mt-3" role="search">
       <input
         class="form-control w-50 me-2"
@@ -13,31 +16,71 @@
     </form>
   </div>
 </header>
-<div class="container mt-5">
-<h2>Trending Movies</h2>
-<div class="row g-4 mb-5">
-    <div class="col-6 col-md-4 col-lg-2 mb-4" *ngFor="let movie of trendingMovies">
-    <app-movie-card [movie]="movie"></app-movie-card>
-  </div>
-</div>
-<h2>Popular Movies</h2>
-<div class="row g-4 mb-5">
-    <div class="col-6 col-md-4 col-lg-2 mb-4" *ngFor="let movie of popularMovies">
-    <app-movie-card [movie]="movie"></app-movie-card>
-  </div>
-</div>
 
-<h2>top Rated Movies</h2>
-<div class="row g-4 mb-5">
-    <div class="col-6 col-md-4 col-lg-2 mb-4" *ngFor="let movie of topRatedMovies">
-    <app-movie-card [movie]="movie"></app-movie-card>
+<div class="container mt-5">
+
+  <!-- Trending -->
+  <h2>Trending Movies</h2>
+  <div class="row g-4 mb-3">
+    <div
+      class="col-6 col-md-4 col-lg-2 mb-4"
+      *ngFor="let movie of movies.trending.data"
+    >
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </div>
   </div>
-</div>
-<h2>up coming Movies</h2>
-<div class="row g-4 mb-5">
-    <div class="col-6 col-md-4 col-lg-2 mb-4" *ngFor="let movie of upcomingMovies">
-    <app-movie-card [movie]="movie"></app-movie-card>
+  <app-movie-pagination
+    [currentPage]="movies.trending.page"
+    [totalPages]="movies.trending.totalPages"
+    (pageChange)="onPageChange('trending', $event)"
+  ></app-movie-pagination>
+
+  <!-- Popular -->
+  <h2 class="mt-5">Popular Movies</h2>
+  <div class="row g-4 mb-3">
+    <div
+      class="col-6 col-md-4 col-lg-2 mb-4"
+      *ngFor="let movie of movies.popular.data"
+    >
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </div>
   </div>
-</div>
+  <app-movie-pagination
+    [currentPage]="movies.popular.page"
+    [totalPages]="movies.popular.totalPages"
+    (pageChange)="onPageChange('popular', $event)"
+  ></app-movie-pagination>
+
+  <!-- Top Rated -->
+  <h2 class="mt-5">Top Rated Movies</h2>
+  <div class="row g-4 mb-3">
+    <div
+      class="col-6 col-md-4 col-lg-2 mb-4"
+      *ngFor="let movie of movies.topRated.data"
+    >
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </div>
+  </div>
+  <app-movie-pagination
+    [currentPage]="movies.topRated.page"
+    [totalPages]="movies.topRated.totalPages"
+    (pageChange)="onPageChange('topRated', $event)"
+  ></app-movie-pagination>
+
+  <!-- Upcoming -->
+  <h2 class="mt-5">Upcoming Movies</h2>
+  <div class="row g-4 mb-3">
+    <div
+      class="col-6 col-md-4 col-lg-2 mb-4"
+      *ngFor="let movie of movies.upcoming.data"
+    >
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </div>
+  </div>
+  <app-movie-pagination
+    [currentPage]="movies.upcoming.page"
+    [totalPages]="movies.upcoming.totalPages"
+    (pageChange)="onPageChange('upcoming', $event)"
+  ></app-movie-pagination>
 </div>
 

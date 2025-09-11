@@ -1,1 +1,56 @@
-<p>movie-pagination works!</p>
+<nav *ngIf="totalPages > 1" class="pagination-container">
+  <ul class="pagination-list">
+
+    <!-- Previous -->
+    <li>
+      <button 
+        class="page-btn nav-btn" 
+        [disabled]="currentPage === 1"
+        (click)="changePage(currentPage - 1)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+    </li>
+
+    <!-- First Page -->
+    <li>
+      <button 
+        class="page-btn" 
+        [class.active]="currentPage === 1"
+        (click)="changePage(1)">
+        1
+      </button>
+    </li>
+
+    <!-- Dots before current -->
+    <li *ngIf="currentPage > 4">
+      <span class="dots">...</span>
+    </li>
+
+    <!-- Pages around current -->
+    <li *ngFor="let page of getPages()">
+      <button 
+        class="page-btn" 
+        [class.active]="currentPage === page"
+        (click)="changePage(page)">
+        {{ page }}
+      </button>
+    </li>
+
+    <!-- Dots after current -->
+    <li *ngIf="currentPage < totalPages - 3">
+      <span class="dots">...</span>
+    </li>
+
+   
+
+    <!-- Next -->
+    <li>
+      <button 
+        class="page-btn nav-btn" 
+        [disabled]="currentPage === totalPages"
+        (click)="changePage(currentPage + 1)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
