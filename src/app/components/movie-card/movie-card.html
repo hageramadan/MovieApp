@@ -23,7 +23,7 @@
       <p class="card-text my-auto">
         {{ movie.release_date | date : 'mediumDate' }}
       </p>
-      <a (click)="toggleFavorite()" (click)="openSnackBar()" style="cursor: pointer"
+      <a (click)="toggleFavorite()" style="cursor: pointer"
         ><i
           [ngClass]="
             isFavorite
