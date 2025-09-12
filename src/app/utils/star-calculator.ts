@@ -15,23 +15,23 @@ export interface StarRating {
 export function calculateStars(voteAverage: number): StarRating {
   // Convert 10-point scale to 5-point scale
   const rating = (voteAverage / 10) * 5;
-  
+
   // Calculate full stars (whole numbers)
   const fullStars = Math.floor(rating);
-  
+
   // Calculate if there's a half star (decimal >= 0.25 and < 0.75)
   const decimal = rating - fullStars;
   const halfStars = (decimal >= 0.25 && decimal < 0.75) ? 1 : 0;
-  
+
   // If decimal >= 0.75, round up to next full star
   const adjustedFullStars = decimal >= 0.75 ? fullStars + 1 : fullStars;
-  
+
   // Calculate empty stars
   const emptyStars = 5 - adjustedFullStars - halfStars;
-  
+
   // Calculate percentage for progress bars if needed
   const percentage = (rating / 5) * 100;
-  
+
   return {
     fullStars: adjustedFullStars,
     halfStars,
@@ -48,22 +48,22 @@ export function calculateStars(voteAverage: number): StarRating {
 export function getStarArray(voteAverage: number): string[] {
   const stars = calculateStars(voteAverage);
   const starArray: string[] = [];
-  
+
   // Add full stars
   for (let i = 0; i < stars.fullStars; i++) {
     starArray.push('full');
   }
-  
+
   // Add half star
   for (let i = 0; i < stars.halfStars; i++) {
     starArray.push('half');
   }
-  
+
   // Add empty stars
   for (let i = 0; i < stars.emptyStars; i++) {
     starArray.push('empty');
   }
-  
+
   return starArray;
 }
 
@@ -74,7 +74,7 @@ export function getStarArray(voteAverage: number): string[] {
  */
 export function getStarRatingText(voteAverage: number): string {
   const rating = (voteAverage / 10) * 5;
-  
+
   if (rating >= 4.5) return 'Excellent';
   if (rating >= 4.0) return 'Very Good';
   if (rating >= 3.5) return 'Good';
@@ -84,8 +84,8 @@ export function getStarRatingText(voteAverage: number): string {
 }
 
 // Example usage and testing
-console.log('🌟 Star Rating Calculator Examples:');
-console.log('=====================================');
+// console.log('🌟 Star Rating Calculator Examples:');
+// console.log('=====================================');
 
 const testRatings = [8.2, 7.5, 6.8, 5.5, 4.2, 9.1, 3.7];
 
@@ -93,11 +93,11 @@ testRatings.forEach(rating => {
   const stars = calculateStars(rating);
   const starArray = getStarArray(rating);
   const description = getStarRatingText(rating);
-  
-  console.log(`\nTMDB Rating: ${rating}/10`);
-  console.log(`5-Star Rating: ${stars.fullStars + (stars.halfStars * 0.5)}/5`);
-  console.log(`Stars: ${stars.fullStars} full, ${stars.halfStars} half, ${stars.emptyStars} empty`);
-  console.log(`Array: [${starArray.join(', ')}]`);
-  console.log(`Description: ${description}`);
-  console.log(`Percentage: ${stars.percentage}%`);
+
+  // console.log(`\nTMDB Rating: ${rating}/10`);
+  // console.log(`5-Star Rating: ${stars.fullStars + (stars.halfStars * 0.5)}/5`);
+  // console.log(`Stars: ${stars.fullStars} full, ${stars.halfStars} half, ${stars.emptyStars} empty`);
+  // console.log(`Array: [${starArray.join(', ')}]`);
+  // console.log(`Description: ${description}`);
+  // console.log(`Percentage: ${stars.percentage}%`);
 });

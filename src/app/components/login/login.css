@@ -1,4 +1,48 @@
 
 input{
     background-color: transparent;
+    border: 1px solid var(--primary-color);
+}
+
+form{
+    height: 35rem;
+    width: 75%;
+    padding-right: 2rem;
+}
+.image{
+    height: 35rem;
+}
+
+.image img{
+    width: 95%;
+    height: 100%;
+}
+
+.btn-sign {
+    background-color: var(--primary-color);
+    margin-top: 0.7rem;
+    padding: 0.5rem 2rem;
+ 
+}
+
+label , a{
+    color: var(--second-color);
+}
+#emailHelp{
+    font-size: 1rem;
+}
+
+@media (max-width:993px) {
+    form{
+        width: 100%;
+    padding-right: 0;
+
+    }
+    .image{
+        display: none;
+    }
+    .col-md-6{
+        width: 100% !important;
+    }
+    
 }

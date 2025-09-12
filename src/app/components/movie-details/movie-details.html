@@ -1,74 +1,97 @@
-<section class="details mt-5">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-lg-4 col-md-12">
-        <div class="text-center">
-          <img src="assets/det.png" class="img-res" alt="movies" />
+@if (movie?.poster_path) {
+  <section
+  class="details"
+  *ngIf="movie"
+ [ngStyle]="{
+    'background-image': movie.backdrop_path 
+      ? 'url(https://image.tmdb.org/t/p/original' + movie.backdrop_path + ')' 
+      : 'url(assets/not_found.png)',
+    'background-size': 'cover',
+    'background-position': 'center',
+    'background-repeat': 'no-repeat'
+  }"
+>
+  <div class="overlay">
+    <div class="container py-5">
+      <div class="row mt-5">
+        <div class="col-md-4 mt-4">
+          <img
+            [src]="movie.poster_path ? getPoster(movie) : 'assets/not_found.png'"
+            [alt]="movie.title"
+            class="img-fluid rounded shadow-lg"
+          />
         </div>
-      </div>
-      <div class="col-lg-8 col-md-12">
-        <div class="item ms-lg-3 mt-4">
-          <div class="d-flex justify-content-between">
-            <div>
-              <h2>Black Widow</h2>
-              <p class="loremDate">Sep 25, 2017</p>
+
+        <div class="col-md-8 item text-light mt-5">
+          <h2>{{ movie.title }}</h2>
+          <p class="loremDate">{{ movie.release_date | date: 'longDate' }}</p>
+           <div class="stars mt-3" *ngIf="movie?.vote_average">
+              <i class="fa-solid fa-star text-warning" *ngFor="let _ of fillStar"></i>
+
+              <i class="fa-solid fa-star-half-stroke text-warning" *ngIf="halfStar"></i>
+
+              <i class="fa-regular fa-star text-warning" *ngFor="let _ of emptyStar"></i>
             </div>
-            <div class="icon" (click)="toggleFavorite()">
-              <i [ngClass]="isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
-            </div>
+          <div class="long-p">
+            <p>{{ movie.overview }}</p>
           </div>
-          <div class="d-flex gap-5 mt-2">
-            <div class="stars">
-              @for(star of fillStar ; track fillStar){
-              <i class="fa-solid fa-star me-1"></i>
-              } @for(star of emptyStar ; track emptyStar){
-              <i class="fa-regular fa-star"></i>
-              }
+           
+
+          <!-- بيانات إضافية -->
+          <div class="d-flex flex-wrap gap-4 mt-4">
+            <div class="d-flex gap-2">
+              <h6>Duration:</h6>
+              <p>{{ movie.runtime }} Min</p>
             </div>
-            <p>9288</p>
+            <div class="d-flex gap-2">
+              <h6>Language:</h6>
+              <p>{{ movie.original_language | uppercase }}</p>
+            </div>
+            <div class="d-flex gap-2" *ngIf="movie.vote_average">
+              <h6>Rating:</h6>
+              <p>{{ movie.vote_average | number: '1.1-1' }}/10</p>
+            </div>
+            <div class="d-flex gap-2" *ngIf="movie.genres?.length">
+              <h6>Genres:</h6>
+              <p>
+                <span *ngFor="let g of movie.genres; let last = last">
+                  {{ g.name }}<span *ngIf="!last">, </span>
+                </span>
+              </p>
+            </div>
           </div>
 
-          <div class="long-p">
-            <p>
-              Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger
-              when a dangerous conspiracy with ties to her past arises. Pursued by a force that will
-              stop at nothing to bring her down, Natasha must deal with her history as a spy and the
-              broken relationships left in her wake long before she became an Avenger.
-            </p>
-          </div>
-          <div class="d-flex">
-            <button class="btn btn-app">Action</button>
-            <button class="btn btn-app ms-3">Crime</button>
-            <button class="btn btn-app ms-3">Thriller</button>
-          </div>
-          <div class="d-flex gap-5 mt-4">
-            <div class="d-flex gap-3">
-              <h6>Duration:</h6>
-              <p>134 Min.</p>
-            </div>
-            <div class="d-flex gap-3">
-              <h6>Languages:</h6>
-              <p>English</p>
-            </div>
-          </div>
-          <div class="img-cart">
-            <img src="assets/marvel.png" alt="brand" />
-          </div>
+         
+        
+
+          <!-- زرار الموقع الرسمي -->
           <button
-            class="btn btn-app mt-4"
-            style="background-color: transparent; padding-left: 1rem; padding-right: 1rem"
+            *ngIf="movie.homepage"
+            class="btn btn-outline-light mt-4"
+            (click)="openWebsite(movie.homepage)"
           >
-            Website <i class="fa-solid fa-link icons"></i>
+            Website <i class="fa-solid fa-link ms-1"></i>
           </button>
         </div>
       </div>
     </div>
-    <hr />
-    <h3 class="mt-5" style="font-size: 48px">Recomendations</h3>
-    <div class="row">
-      <div class="col-md-12">
-        <app-movie-card [movie]="movie"></app-movie-card>
-      </div>
+  </div>
+</section>
+
+<section class="recommendations container my-5">
+  <h2 class="my-5">Recommendations</h2>
+  <div class="row g-4 mb-5">
+    <div class="col-6 col-md-4 col-lg-2" *ngFor="let m of movies">
+      <app-movie-card [movie]="m"></app-movie-card>
     </div>
   </div>
 </section>
+}
+@else {
+  <div class="hight4 ">
+  <img src="assets/noMovie.png" alt="noMovie" class="mt-5">
+  <h4>Movie Not Found</h4>
+   <button class="btn btn-warning px-5" routerLink="">Back to Home</button>
+  </div>
+
+}

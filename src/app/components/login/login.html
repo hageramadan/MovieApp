@@ -1,22 +1,23 @@
 
 
 
-
-<form (ngSubmit)="login()" class="m-auto d-flex shadow " style=" width: 50%; ">
-  <div class="image w-50 ">
-    <img class="w-100  " src="2.jpg" alt="login page" />
+<div class="container mt-5">
+<form (ngSubmit)="login()" class="row shadow  mx-auto align-items-center ">
+  <div class="image col-md-6 ps-0 ms-0 pb-0 mb-0">
+    <img  src="8.jpg" alt="login page" />
   </div>
-  <div class="loginForm m-auto w-100 p-4 " >
-    <div class="headtitle mb-2 m-4 p-1">
-      <h3>Welcome Back,</h3>
+  <div class="loginForm col-md-6" >
+    <div class="headtitle mb-2  p-1">
+      <h2>Welcome Back,</h2>
       <p>Sign to your account</p>
     </div>
 
-    <div class="ms-4 me-5 mb-3 form-floating " >
+    <div class=" mb-3 form-floating " >
      
       <input
         type="email"
-        placeholder="Enter your Username"
+        placeholder=""
+        
         class="form-control"
          [(ngModel)]="user.username"
         id="exampleInputEmail1"
@@ -30,7 +31,7 @@
 
 
 
-    <div class="ms-4 me-5 form-floating">
+    <div class="form-floating">
       
       <input
         type="password"
@@ -38,24 +39,19 @@
         [(ngModel)]="user.password"
         id="exampleInputPassword1"
         name="password"
-        placeholder="Enter your password"
+        placeholder=""
       />
       <label for="password">Password</label>
     </div>
-
-
-
-     <div class=" p-4 text-center">
-     
-    </div>
-    
-
-    <div class="loginBtn ms-4 me-5">
-      <button type="submit" class="btn btn-warning  w-100">Sign In</button><br /><br />
+    <div class="loginBtn   mt-4">
+      <button type="submit" class="btn btn-sign  w-100">Sign In</button><br /><br />
     </div>
 
-    <div id="emailHelp" class="form-text ms-4 text-center">
-      if you don't have an account? <a style="color: orange" routerLink="../register">Sign Up</a>
+    <div id="emailHelp" class="form-text text-center">
+      if you don't have an account? 
+      <a class="ms-1" style="color:var(--primary2-color)" routerLink="../register">Sign Up</a>
     </div>
   </div>
 </form>
+</div>
+

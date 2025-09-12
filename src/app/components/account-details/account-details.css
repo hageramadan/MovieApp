@@ -1,0 +1,144 @@
+/* Styling for the account details component to match a modern movie app design */
+
+/* Import Roboto font for consistent typography */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
+/* Root container styling for full-screen layout */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #1A0B11; /* Darker background for a cinematic feel */
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Main container for centering content */
+.container.py-4 {
+  max-width: 600px; /* Slightly wider for better content fit */
+  margin: 0 auto;
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center horizontally */
+}
+
+/* Card styling for account details */
+.card {
+  border: none;
+  border-radius: 12px; /* Softer corners for modern look */
+  background-color: #2C2C2C; /* Slightly lighter card background */
+  color: #FFFFFF;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6); /* Deeper shadow for depth */
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px; /* Constrain card width */
+}
+
+/* Card title for the user's name */
+.card-title {
+  font-size: 1.8rem; /* Slightly larger for prominence */
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* Muted text for username */
+.text-muted {
+  color: #B0B0B0 !important; /* Lighter gray for contrast */
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Avatar styling */
+.rounded-circle {
+  border: 3px solid #FFC107; /* Vibrant yellow border for avatar */
+  width: 100px; /* Fixed size for consistency */
+  height: 100px;
+  object-fit: cover; /* Ensure avatar image fits well */
+  margin: 0 auto 1rem; /* Center with bottom margin */
+  display: block;
+}
+
+/* Section headers */
+.h5 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #FFC107; /* Yellow accent for headers */
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+/* Account info text */
+.card-text {
+  font-size: 1rem;
+  color: #D0D0D0; /* Light gray for readability */
+  margin-bottom: 0.5rem;
+}
+
+/* Logout button */
+.btn-danger {
+  background-color: #FFC107; /* Vibrant yellow for action button */
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #1A0B11; /* Dark text for contrast */
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #FFB300; /* Slightly darker yellow on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4); /* Enhanced shadow on hover */
+}
+
+/* Centered text for loading state */
+.text-center {
+  text-align: center;
+}
+
+/* Margin utility */
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+/* Loading animation container */
+.text-center.text-white {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+}
+
+/* Host styling for Angular component */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .container.py-4 {
+    padding: 0.5rem;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+  .card-title {
+    font-size: 1.5rem;
+  }
+  .btn-danger {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+}
