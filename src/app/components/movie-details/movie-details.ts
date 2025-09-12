@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MovieCard } from '../movie-card/movie-card';
 import { CommonModule } from '@angular/common';
 import { Movie } from '../../shared/services/movie';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RouterLink } from "@angular/router";
+import { UserCredtionalI } from '../../shared/user-credtional-i';
+import { Watchlist } from '../../shared/watchlist';
+import { WatchlistCounter } from '../../shared/watchlist-counter';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie-details',
@@ -14,7 +18,8 @@ import { RouterLink } from "@angular/router";
 export class MovieDetails implements OnInit {
   movies: any[] = [];  
   movie: any;         
-  isFavorite: boolean = false;
+    isFavorite: boolean = false;
+
 
   fillStar: number[] = [];
   emptyStar: number[] = [];
@@ -29,7 +34,13 @@ export class MovieDetails implements OnInit {
 
   constructor(
     private movieService: Movie,
-    private route: ActivatedRoute
+    private route: ActivatedRoute ,
+  private snackBar: MatSnackBar,
+    private router: Router,
+    private watchListService: Watchlist,
+    private user: UserCredtionalI,
+    private counterService: WatchlistCounter
+    
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +57,6 @@ export class MovieDetails implements OnInit {
     this.movie = null;
     this.showNotFound = false;
     this.isLoading = true; 
-
     this.movieService.getMovieDetails(id).subscribe({
       next: (res: any) => {
         this.movie = res;
@@ -61,6 +71,8 @@ export class MovieDetails implements OnInit {
         }
 
         this.isLoading = false; 
+ this.checkIfInWatchlist();
+
       },
       error: () => {
         this.isLoading = false;
@@ -90,5 +102,53 @@ export class MovieDetails implements OnInit {
 
   onPosterError() {
     this.isPosterError = true;
+  }
+  toggleFavorite() {
+    if (!this.movie) return;
+
+    this.isFavorite = !this.isFavorite;
+
+    const accountId = this.user.currentAccountId;
+    const sessionId = this.user.currentSessionId;
+    const mediaType = 'movie';
+
+    if (this.isFavorite) {
+      this.watchListService
+        .addtoWatchList(mediaType, this.movie.id, <string>accountId, <string>sessionId)
+        .subscribe({
+          next: () => {
+            this.openSnackBar('Added to watchlist'), this.counterService.increment();
+          },
+          error: (err) => console.error('Error adding:', err),
+        });
+    } else {
+      this.watchListService
+        .removefromWatchList(mediaType, this.movie.id, <string>accountId, <string>sessionId)
+        .subscribe({
+          next: () => {
+            this.openSnackBar('Removed from watchlist'), this.counterService.decrement();
+          },
+          error: (err) => console.error('Error removing:', err),
+        });
+    }
+  }
+    openSnackBar(message: string) {
+    this.snackBar.open(message, 'X', {
+      duration: 3000, // مدة الظهور بالمللي ثانية
+      horizontalPosition: 'right', // start | center | end | left | right
+      verticalPosition: 'top',
+      panelClass: ['custom-snackbar'], // top | bottom
+    });
+  }
+  checkIfInWatchlist() {
+    const accountId = this.user.currentAccountId;
+    const sessionId = this.user.currentSessionId;
+
+    if (this.movie && accountId && sessionId) {
+      this.watchListService.getWatchlist(accountId, sessionId, 1).subscribe((res: any) => {
+        const exists = res.results.some((item: any) => item.id === this.movie?.id);
+        this.isFavorite = exists;
+      });
+    }
   }
 }

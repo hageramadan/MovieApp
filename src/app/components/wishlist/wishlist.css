@@ -58,6 +58,7 @@
   margin-right: 20px;
   position: relative;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .card-img .favorite-badge {
@@ -146,8 +147,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+
 }
 
 .card:hover {
@@ -191,7 +191,7 @@
 
   .card-text {
     font-size: 13px;
-    -webkit-line-clamp: 2; /* Show only 2 lines on mobile */
+  
   }
 }
 
@@ -326,8 +326,11 @@
 
   .card-text {
     font-size: 15px;
-    -webkit-line-clamp: 4; /* Show more lines on large screens */
+   
   }
+}
+img{
+  cursor: pointer;
 }
 
 /* Extra large screens (1600px and up) */

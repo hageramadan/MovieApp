@@ -10,12 +10,13 @@ import { Router } from '@angular/router';
   selector: 'app-account-details',
   templateUrl: './account-details.html',
   styleUrls: ['./account-details.css'],
+  standalone: true, // الأفضل تضيفها لو component standalone
   imports: [CommonModule],
 })
 export class AccountDetails implements OnInit, OnDestroy {
   public account: AccountDetailsI | null = null;
-  public isLoading: boolean = true;
-  private subscription: Subscription | null = null;
+  public isLoading = true;
+  private subscription?: Subscription;
 
   constructor(
     private accountService: AccountS,
@@ -24,17 +25,16 @@ export class AccountDetails implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.userCredtional.initializeFromStorage(); // Initialize credentials from localStorage
     this.subscription = this.accountService.getAccountDetails().subscribe({
       next: (account) => {
         this.account = account;
         this.isLoading = false;
-        console.log('Account details:', account);
+       
       },
       error: (error) => {
         console.error('Error in account details subscription:', error);
         this.isLoading = false;
-      }
+      },
     });
   }
 
@@ -44,8 +44,6 @@ export class AccountDetails implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.subscription?.unsubscribe();
   }
 }

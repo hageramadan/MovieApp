@@ -1,55 +1,57 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserCredtionalI {
-  private _sessionId: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-  private _accountId: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+  private _sessionId$ = new BehaviorSubject<string | null>(null);
+  private _accountId$ = new BehaviorSubject<string | null>(null);
 
-  set sessionId(newSessionId: string) {
-    this._sessionId.next(newSessionId);
-    localStorage.setItem('tmdb_session_id', newSessionId);
+  constructor() {
+    this.initializeFromStorage(); // يقرأ من localStorage أول ما السيرفيس يتعمل Inject
   }
 
-  set accountId(newAccountId: string) {
-    this._accountId.next(newAccountId);
-    localStorage.setItem('tmdb_account_id', newAccountId); // Persist accountId
+  // -------- Setters --------
+  setSessionId(sessionId: string): void {
+    this._sessionId$.next(sessionId);
+    localStorage.setItem('tmdb_session_id', sessionId);
   }
 
-  get sessionId$() {
-    return this._sessionId.asObservable();
+  setAccountId(accountId: string): void {
+    this._accountId$.next(accountId);
+    localStorage.setItem('tmdb_account_id', accountId);
   }
 
-  get accountId$() {
-    return this._accountId.asObservable();
+  // -------- Getters --------
+  get sessionId$(): Observable<string | null> {
+    return this._sessionId$.asObservable();
+  }
+
+  get accountId$(): Observable<string | null> {
+    return this._accountId$.asObservable();
   }
 
   get currentSessionId(): string | null {
-    return this._sessionId.getValue();
+    return this._sessionId$.value;
   }
 
   get currentAccountId(): string | null {
-    return this._accountId.getValue();
+    return this._accountId$.value;
   }
 
-  // Initialize from localStorage if available
-  initializeFromStorage() {
+  // -------- Storage Management --------
+  private initializeFromStorage(): void {
     const savedSessionId = localStorage.getItem('tmdb_session_id');
     const savedAccountId = localStorage.getItem('tmdb_account_id');
-    if (savedSessionId) {
-      this._sessionId.next(savedSessionId);
-    }
-    if (savedAccountId) {
-      this._accountId.next(savedAccountId);
-    }
+
+    if (savedSessionId) this._sessionId$.next(savedSessionId);
+    if (savedAccountId) this._accountId$.next(savedAccountId);
   }
 
-  // Optional: Clear credentials on logout
-  clearCredentials() {
-    this._sessionId.next(null);
-    this._accountId.next(null);
+  clearCredentials(): void {
+    this._sessionId$.next(null);
+    this._accountId$.next(null);
     localStorage.removeItem('tmdb_session_id');
     localStorage.removeItem('tmdb_account_id');
   }

@@ -3,7 +3,26 @@ nav{
     margin-bottom: 10%;
     box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.411);
 }
-
+.nav-aa{
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
+.dropdown-toggle::after {
+    display: none;
+    margin-right: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid transparent;
+    border-right: .3em solid;
+    border-bottom: .3em solid transparent;
+}
+.dropdown-menu{
+    cursor: pointer;
+}
+.dropdown-menu li:hover a{
+    background-color: rgb(89, 98, 129) !important;
+    color: var(--white-color);
+}
 .watch{
     font-size: 15px;
     position: relative;

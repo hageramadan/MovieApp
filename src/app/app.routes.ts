@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home';
-import { login } from './components/login/login';
+import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import { Wishlist } from './components/wishlist/wishlist';
 import { Search } from './components/search/search';
@@ -13,7 +13,7 @@ import { guestGuard } from './components/guards/guest-guard';
 export const routes: Routes = [
   
   { path: '', component: HomeComponent  },
-  { path: 'login', component: login, canActivate:[guestGuard] },
+  { path: 'login', component: Login, canActivate:[guestGuard] },
   { path: 'register', component: Register, canActivate:[guestGuard] },
   { path: 'wishlist',component: Wishlist,canActivate:[authGuard]},
   { path: 'search',component: Search },

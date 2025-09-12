@@ -1,60 +1,69 @@
 <div class="container mt-5">
-<form (ngSubmit)="login()" class="row shadow  mx-auto align-items-center ">
-  <div class="image col-md-6 ps-0 ms-0 pb-0 mb-0">
-    <img  src="8.jpg" alt="login page" />
-  </div>
-  <div class="loginForm col-md-6" >
-    <div class="headtitle mb-2  p-1">
-      <h2>Welcome Back,</h2>
-      <p>Sign to your account</p>
+  <form (ngSubmit)="login()" class="row shadow mx-auto align-items-center">
+    <div class="image col-md-6 ps-0 ms-0 pb-0 mb-0">
+      <img src="8.jpg" alt="login page" />
     </div>
 
-    <div class=" mb-3 form-floating " >
+    <div class="loginForm col-md-6">
+      <div class="headtitle mb-2 p-1">
+        <h2>Welcome Back,</h2>
+        <p>Sign to your account</p>
+      </div>
+
+      <!-- Username -->
+      <div class="mb-3 form-floating">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.username"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+          required
+        />
+        <label for="username">Username</label>
+      </div>
+
+      <!-- Password -->
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control"
+          [(ngModel)]="user.password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+        <label for="password">Password</label>
+      </div>
+
+      <!-- Error Message -->
+       @if (errorMessage){
+           <p  class="text-danger mt-3">
+        {{ errorMessage }}
+      </p>
+       }
      
-      <input
-        type="email"
-        placeholder=""
-        
-        class="form-control"
-         [(ngModel)]="user.username"
-        id="exampleInputEmail1"
-        name="username"
-        aria-describedby="emailHelp"
-       
-      />
-       <label for="exampleInputEmail1">Username</label>
+
+      <!-- Submit -->
+      <div class="loginBtn mt-4">
+        <button type="submit" class="btn btn-sign w-100">Sign In</button>
+      </div>
+
+      <!-- Signup link -->
+      <div id="emailHelp" class="form-text text-center mt-3">
+        If you don't have an account?
+        <a
+          class="ms-1"
+          style="color: var(--primary2-color)"
+          href="https://www.themoviedb.org/signup"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Sign Up
+        </a>
+      </div>
     </div>
-
-
-
-
-    <div class="form-floating">
-      
-      <input
-        type="password"
-        class="form-control"
-        [(ngModel)]="user.password"
-        id="exampleInputPassword1"
-        name="password"
-        placeholder=""
-      />
-      <label for="password">Password</label>
-    </div>
-    <div class="loginBtn   mt-4">
-      <button type="submit" class="btn btn-sign  w-100">Sign In</button><br /><br />
-    </div>
-
-    <div id="emailHelp" class="form-text text-center">
-      if you don't have an account? 
-          <a class="ms-1" 
-        style="color:var(--primary2-color)" 
-        href="https://www.themoviedb.org/signup" 
-        target="_blank" 
-        rel="noopener noreferrer">
-        Sign Up
-      </a>
-    </div>
-  </div>
-</form>
+  </form>
 </div>
-

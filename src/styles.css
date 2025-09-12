@@ -50,7 +50,7 @@ body.dark-mode input::placeholder
   color: var(--white-color) !important;
   background-color: transparent !important;
 }
-body.dark-mode nav{
+body.dark-mode nav , body.dark-mode .dropdown-menu{
    background-color:var(--primary3-color) !important;
 
 }
@@ -96,4 +96,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 5px 8px;
   border-radius: 3px;
   box-shadow: 0px 3px 10px 0px rgba(128, 128, 128, 0.548);
+}
+.theme-toggle{
+  font-size: 1.2rem;
 }

@@ -48,7 +48,17 @@
 
           <!-- تفاصيل الفيلم -->
           <div class="col-md-8 item text-light mt-5">
-            <h2>{{ movie.title }}</h2>
+            <div class="d-flex justify-content-between">
+                 <h2>{{ movie.title }}</h2>
+                <a (click)="toggleFavorite()" style="cursor: pointer"
+                ><i
+                  [ngClass]="
+                    isFavorite
+                      ? 'fa-solid fa-heart text-warning h4 my-auto'
+                      : 'fa-regular fa-heart text-warning h4 my-auto'
+                  "></i></a>
+            </div>
+           
             <p class="loremDate">{{ movie.release_date | date: 'longDate' }}</p>
 
             <!-- التقييم -->

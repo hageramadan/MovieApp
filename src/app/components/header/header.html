@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container-fluid px-5">
+  <div class="container">
     <a class="navbar-brand" routerLink="/">Movie App</a>
     <button
       class="navbar-toggler back-ground border-0"
@@ -12,22 +12,58 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+
+      <!-- theme toggle -->
       <div class="theme-toggle" style="cursor: pointer" (click)="toggleTheme()">
         <i [ngClass]="isDarkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
       </div>
-      <button class="btn d-flex watch me-1" routerLink="wishlist">
-        <i class="fa-solid fa-heart icon-hh me-1"></i>
-        <a routerLink="wishlist">watchlist</a>
-        <p class="num-fav">{{ count }}</p>
-      </button>
-      <button class="btn " routerLink="account">
-          <a *ngIf="!isLoggedIn"  routerLink="/login">Login</a>
-          <a *ngIf="isLoggedIn"  routerLink="account">account detail</a>
 
-        <i class="fa-regular fa-circle-user userI  mx-1"></i>
-      </button>
+            
+      <a *ngIf="!isLoggedIn" class="nav-aa" routerLink="/login">Login <i class="fa-regular fa-circle-user"></i></a>
+
+      <ng-container *ngIf="isLoggedIn">
+        <div class="btn-group ms-3" *ngIf="account; else loading">
+          <button
+            class="btn btn-warning rounded-circle dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+           {{ account.username ? account.username.charAt(0).toUpperCase() : 'N' }}
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item">
+                {{ account.username || 'No Name Provided' }}
+              </a>
+            </li>
+            <li><a class="dropdown-item" routerLink="account">view account</a></li>
+            <li>
+              <a class="dropdown-item" routerLink="wishlist">watchlist</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" (click)="logout()">logout</a>
+            </li>
+          </ul>
+        </div>
+         <button class="btn d-flex watch" routerLink="wishlist">
+          <i class="fa-solid fa-heart icon-hh me-1"></i>
+          <a routerLink="wishlist" class="nav-aa">watchlist</a>
+          
+          @if (count) { <p class="num-fav">{{ count }}</p>}
+        </button>
+
+        <ng-template #loading>
+          <button class="btn">
+            <a routerLink="/login">Login</a>
+            <i class="fa-regular fa-circle-user"></i>
+          </button>
+        </ng-template>
+      </ng-container>
     </div>
   </div>
 </nav>

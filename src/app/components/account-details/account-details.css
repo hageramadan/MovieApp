@@ -5,10 +5,11 @@
 
 /* Root container styling for full-screen layout */
 .app-container {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
-  background-color: #1A0B11; /* Darker background for a cinematic feel */
+  /* background-color: #1A0B11; */
+   /* Darker background for a cinematic feel */
   font-family: 'Roboto', sans-serif;
 }
 
@@ -20,7 +21,7 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center; /* Center horizontally */
 }
 
@@ -28,7 +29,8 @@
 .card {
   border: none;
   border-radius: 12px; /* Softer corners for modern look */
-  background-color: #2C2C2C; /* Slightly lighter card background */
+  /* background-color: #2C2C2C; */
+   /* Slightly lighter card background */
   color: #FFFFFF;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6); /* Deeper shadow for depth */
   padding: 2rem;
@@ -40,14 +42,14 @@
 .card-title {
   font-size: 1.8rem; /* Slightly larger for prominence */
   font-weight: 700;
-  color: #FFFFFF;
+  color: #000000;
   margin-bottom: 0.5rem;
   text-align: center;
 }
 
 /* Muted text for username */
 .text-muted {
-  color: #B0B0B0 !important; /* Lighter gray for contrast */
+  color: #777777 !important; /* Lighter gray for contrast */
   font-size: 1rem;
   text-align: center;
 }
@@ -74,7 +76,8 @@
 /* Account info text */
 .card-text {
   font-size: 1rem;
-  color: #D0D0D0; /* Light gray for readability */
+  color: #000000; 
+  /* Light gray for readability */
   margin-bottom: 0.5rem;
 }
 
@@ -84,7 +87,8 @@
   border: none;
   border-radius: 10px;
   font-weight: 600;
-  color: #1A0B11; /* Dark text for contrast */
+  /* color: #1A0B11;  */
+  /* Dark text for contrast */
   width: 100%;
   padding: 0.8rem;
   font-size: 1rem;
@@ -97,10 +101,7 @@
   box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4); /* Enhanced shadow on hover */
 }
 
-/* Centered text for loading state */
-.text-center {
-  text-align: center;
-}
+
 
 /* Margin utility */
 .mb-4 {
@@ -112,8 +113,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  color: #FFFFFF;
+  /* color: #FFFFFF; */
   font-size: 1.2rem;
 }
 

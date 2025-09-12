@@ -10,29 +10,27 @@ import { WatchlistCounter } from '../../shared/watchlist-counter';
 
 @Component({
   selector: 'app-wishlist',
+  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './wishlist.html',
-  styleUrl: './wishlist.css',
+  styleUrls: ['./wishlist.css'],
 })
 export class Wishlist implements OnInit, OnDestroy {
-  private credentialsSubscription: Subscription | null = null;
+  private credentialsSubscription?: Subscription;
 
   baseBosterUrl: string = 'https://image.tmdb.org/t/p/w185/';
   movies: WatchlistI[] = [];
-  isLoading: boolean = true;
+  isLoading = true;
 
   constructor(
-    public watchlistHttpClient: Watchlist,
-    public userCredtional: UserCredtionalI,
+    private watchlistHttpClient: Watchlist,
+    private userCredtional: UserCredtionalI,
     private router: Router,
     private counterService: WatchlistCounter
   ) {}
 
   ngOnInit(): void {
-    // Initialize from storage
-    this.userCredtional.initializeFromStorage();
-
-    // Subscribe to both accountId$ and sessionId$
+    // متابعة التغيرات في الـ credentials
     this.credentialsSubscription = combineLatest([
       this.userCredtional.accountId$,
       this.userCredtional.sessionId$,
@@ -40,7 +38,6 @@ export class Wishlist implements OnInit, OnDestroy {
       if (accountId && sessionId) {
         this.loadWatchlist();
       } else {
-        console.log('Missing credentials:', { accountId, sessionId });
         this.isLoading = false;
       }
     });
@@ -54,17 +51,13 @@ export class Wishlist implements OnInit, OnDestroy {
       this.isLoading = true;
       this.watchlistHttpClient.getWatchlist(accountId, sessionId, 1).subscribe({
         next: (response) => {
-          console.log({
-            response,
-            accountId,
-            sessionId,
-          });
+         
           this.movies = response.results;
           this.counterService.setCount(this.movies.length);
           this.isLoading = false;
         },
         error: (error) => {
-          console.error('Error loading watchlist:', error);
+          
           this.isLoading = false;
         },
       });
@@ -89,24 +82,22 @@ export class Wishlist implements OnInit, OnDestroy {
       this.watchlistHttpClient
         .removefromWatchList('movie', movie.id, accountId, sessionId)
         .subscribe((response) => {
-          if (response.success == true) {
-            const index = this.movies.findIndex((searchMovie) => searchMovie.id === movie.id);
-            this.counterService.decrement();
+          if (response.success) {
+            const index = this.movies.findIndex((m) => m.id === movie.id);
             if (index !== -1) {
               this.movies.splice(index, 1);
+              this.counterService.decrement();
             }
           }
         });
     }
   }
 
-  ngOnDestroy(): void {
-    if (this.credentialsSubscription) {
-      this.credentialsSubscription.unsubscribe();
-    }
-  }
-
   navigatetoMovieDetails(movieId: number) {
     this.router.navigate([`/movie/${movieId}`]);
+  }
+
+  ngOnDestroy(): void {
+    this.credentialsSubscription?.unsubscribe();
   }
 }
