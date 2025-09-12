@@ -5,10 +5,11 @@ import { getStarArray, calculateStars } from '../../utils/star-calculator';
 import { Watchlist } from '../../shared/watchlist';
 import { UserCredtionalI } from '../../shared/user-credtional-i';
 import { Subscription, combineLatest } from 'rxjs';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-wishlist',
-  imports: [CommonModule],
+  imports: [CommonModule , RouterLink],
   templateUrl: './wishlist.html',
   styleUrl: './wishlist.css',
 })
@@ -21,7 +22,8 @@ export class Wishlist implements OnInit, OnDestroy {
 
   constructor(
     public watchlistHttpClient: Watchlist,
-    public userCredtional: UserCredtionalI
+    public userCredtional: UserCredtionalI,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -100,5 +102,11 @@ export class Wishlist implements OnInit, OnDestroy {
     if (this.credentialsSubscription) {
       this.credentialsSubscription.unsubscribe();
     }
+  }
+
+
+  navigatetoMovieDetails(movieId:number)
+  {
+    this.router.navigate([`/movie/${movieId}`])
   }
 }

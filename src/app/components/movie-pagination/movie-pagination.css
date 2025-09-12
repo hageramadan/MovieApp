@@ -25,18 +25,11 @@
   cursor: pointer;
   transition: all 0.25s ease;
 }
-/* 
-.page-btn:hover:not(:disabled) {
-  background: #ff9800;
-  color: #fff;
-} */
-
 .page-btn.active {
   background: #ff9800;
   color: #fff;
   font-weight: bold;
 }
-
 .page-btn:disabled {
   background: #333;
   color: #777;
