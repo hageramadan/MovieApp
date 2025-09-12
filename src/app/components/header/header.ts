@@ -14,23 +14,19 @@ export class Header {
   count = 0;
   constructor(private theme: ThemeService, private counterService: WatchlistCounter) {}
 
-isLoggedIn = false;
+  isLoggedIn = false;
 
+  ngOnInit() {
+    this.isLoggedIn = !!localStorage.getItem('tmdb_session_id');
+    this.counterService.count$.subscribe((val) => {
+      this.count = val;
+    });
+  }
 
-ngOnInit() {
-  this.isLoggedIn = !!localStorage.getItem("tmdb_session_id");
-}
-
-logout() {
-  localStorage.removeItem("tmdb_session_id");
-  location.reload(); 
-}
-
-
-
-
-
-   constructor(private theme:ThemeService){
+  logout() {
+    localStorage.removeItem('tmdb_session_id');
+    location.reload();
+  }
 
   get isDarkMode() {
     return this.theme.isDarkMode();
@@ -38,11 +34,5 @@ logout() {
 
   toggleTheme() {
     this.theme.toggleTheme();
-  }
-
-  ngOnInit() {
-    this.counterService.count$.subscribe((val) => {
-      this.count= val
-    })
   }
 }
