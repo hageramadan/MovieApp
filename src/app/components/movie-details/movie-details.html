@@ -1,10 +1,10 @@
 @if (movie?.poster_path) {
-  <section
+<section
   class="details"
   *ngIf="movie"
- [ngStyle]="{
-    'background-image': movie.backdrop_path 
-      ? 'url(https://image.tmdb.org/t/p/original' + movie.backdrop_path + ')' 
+  [ngStyle]="{
+    'background-image': movie.backdrop_path
+      ? 'url(https://image.tmdb.org/t/p/original' + movie.backdrop_path + ')'
       : 'url(assets/not_found.png)',
     'background-size': 'cover',
     'background-position': 'center',
@@ -24,18 +24,17 @@
 
         <div class="col-md-8 item text-light mt-5">
           <h2>{{ movie.title }}</h2>
-          <p class="loremDate">{{ movie.release_date | date: 'longDate' }}</p>
-           <div class="stars mt-3" *ngIf="movie?.vote_average">
-              <i class="fa-solid fa-star text-warning" *ngFor="let _ of fillStar"></i>
+          <p class="loremDate">{{ movie.release_date | date : 'longDate' }}</p>
+          <div class="stars mt-3" *ngIf="movie?.vote_average">
+            <i class="fa-solid fa-star text-warning" *ngFor="let _ of fillStar"></i>
 
-              <i class="fa-solid fa-star-half-stroke text-warning" *ngIf="halfStar"></i>
+            <i class="fa-solid fa-star-half-stroke text-warning" *ngIf="halfStar"></i>
 
-              <i class="fa-regular fa-star text-warning" *ngFor="let _ of emptyStar"></i>
-            </div>
+            <i class="fa-regular fa-star text-warning" *ngFor="let _ of emptyStar"></i>
+          </div>
           <div class="long-p">
             <p>{{ movie.overview }}</p>
           </div>
-           
 
           <!-- بيانات إضافية -->
           <div class="d-flex flex-wrap gap-4 mt-4">
@@ -49,7 +48,7 @@
             </div>
             <div class="d-flex gap-2" *ngIf="movie.vote_average">
               <h6>Rating:</h6>
-              <p>{{ movie.vote_average | number: '1.1-1' }}/10</p>
+              <p>{{ movie.vote_average | number : '1.1-1' }}/10</p>
             </div>
             <div class="d-flex gap-2" *ngIf="movie.genres?.length">
               <h6>Genres:</h6>
@@ -60,9 +59,6 @@
               </p>
             </div>
           </div>
-
-         
-        
 
           <!-- زرار الموقع الرسمي -->
           <button
@@ -86,12 +82,11 @@
     </div>
   </div>
 </section>
-}
-@else {
-  <div class="hight4 ">
-  <img src="assets/noMovie.png" alt="noMovie" class="mt-5">
+} @else {
+<div class="hight4">
+  <img src="assets/noMovie.png" alt="noMovie" class="mt-5" />
   <h4>Movie Not Found</h4>
-   <button class="btn btn-warning px-5" routerLink="">Back to Home</button>
-  </div>
+  <button class="btn btn-warning px-5" routerLink="">Back to Home</button>
+</div>
 
 }

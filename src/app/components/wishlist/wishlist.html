@@ -10,20 +10,31 @@
     </div>
 
     <div *ngIf="!isLoading && movies.length === 0" class="text-center py-5">
-      <h3>Your watchlist is empty</h3>
-      <p>Start adding movies to see them here!</p>
+      <div class="hight4">
+        <img src="assets/noMovie.png" alt="noMovie" class="mt-5" />
+        <h4>No Movies in watch list</h4>
+        <button class="btn btn-warning px-5" routerLink="">Back to Home</button>
+      </div>
     </div>
 
     <div class="card-grid" *ngIf="!isLoading && movies.length > 0">
       <div class="card" *ngFor="let movie of movies">
         <div class="card-content">
-          <img [src]="baseBosterUrl+movie.poster_path" alt="{{ movie.title }} Poster" class="card-img" loading="lazy" (click)="navigatetoMovieDetails(movie.id)">
+          <img
+            [src]="baseBosterUrl + movie.poster_path"
+            alt="{{ movie.title }} Poster"
+            class="card-img"
+            loading="lazy"
+            (click)="navigatetoMovieDetails(movie.id)"
+          />
           <div class="card-body">
             <div class="title-header">
               <h3 class="card-title">{{ movie.title }}</h3>
-              <span class="favorite-btn" (click)="heartTrigger(movie)"><i class="bi bi-heart-fill"></i></span>
+              <span class="favorite-btn" (click)="heartTrigger(movie)"
+                ><i class="bi bi-heart-fill"></i
+              ></span>
             </div>
-            <p class="release-date">{{ movie.release_date | date}}</p>
+            <p class="release-date">{{ movie.release_date | date }}</p>
             <div class="star-rating">
               <span
                 *ngFor="let star of getStarArray(movie.vote_average)"
@@ -32,7 +43,8 @@
                   'bi-star-fill': star === 'full',
                   'bi-star-half': star === 'half',
                   'bi-star': star === 'empty'
-                }">
+                }"
+              >
               </span>
               <span class="rating-value">{{ movie.vote_average }}</span>
             </div>
