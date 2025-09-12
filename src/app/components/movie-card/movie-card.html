@@ -1,9 +1,15 @@
 <div class="card border-0 movie-card shadow">
-  <div class="position-relative">
+  <div class="position-relative image-wrapper">
+    @if (!imageLoaded) {
+     <div class="skeleton" ></div>
+
+    }
     <img
       [src]="movie.poster_path ? getPoster(movie) : 'assets/not_found.png'"
       class="card-img rounded-4"
       alt="Movie Poster"
+      (load)="imageLoaded = true"
+      [class.hidden]="!imageLoaded"
       (click)="details(movie.id)"
     />
     <!-- Rating Circle -->

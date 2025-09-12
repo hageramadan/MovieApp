@@ -22,6 +22,8 @@ export class MovieCard {
   @Input() upcomingMovies?: any[] = [];
 
   isFavorite: boolean = false;
+  imageLoaded = false;
+
   constructor(
     private snackBar: MatSnackBar,
     private router: Router,
