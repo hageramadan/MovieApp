@@ -1,1 +1,30 @@
-<p>account-details works!</p>
+<div class="container py-4">
+  <h1 class="text-center mb-4 text-white">Account Details</h1>
+  <div *ngIf="account; else loading" class="card bg-dark text-white shadow-lg">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-4">
+        <img *ngIf="account.avatar.gravatar.hash" [src]="'https://www.gravatar.com/avatar/' + account.avatar.gravatar.hash + '?s=200'" alt="User Avatar" class="rounded-circle me-3" style="width: 80px; height: 80px;">
+        <div>
+          <h2 class="card-title">{{ account.name || 'No Name Provided' }}</h2>
+          <p class="text-muted">{{ account.username }}</p>
+        </div>
+      </div>
+      <div class="mb-4">
+        <h3 class="h5">Account Info</h3>
+        <p class="text-muted">ID: {{ account.id }}</p>
+        <p class="text-muted">Language: {{ account.iso_639_1 }}</p>
+        <p class="text-muted">Country: {{ account.iso_3166_1 }}</p>
+      </div>
+      <div>
+        <h3 class="h5">Actions</h3>
+        <button class="btn btn-danger w-100" (click)="logout()">Log Out</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="text-center text-white">Loading...</div>
+  </ng-template>
+  <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-4" role="alert">
+    {{ errorMessage }}
+  </div> -->
+</div>
