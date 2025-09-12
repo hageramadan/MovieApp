@@ -30,6 +30,10 @@ export class MovieCard {
     private movieService: Movie,
     private counterService: WatchlistCounter
   ) {}
+
+  ngOnInit() {
+    this.checkIfInWatchlist();
+  }
   getPoster(movie: any) {
     return `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   }
@@ -38,6 +42,17 @@ export class MovieCard {
     return Math.round(movie.vote_average * 10);
   }
 
+  checkIfInWatchlist() {
+    const accountId = this.user.currentAccountId;
+    const sessionId = this.user.currentSessionId;
+
+    if (this.movie && accountId && sessionId) {
+      this.watchListService.getWatchlist(accountId, sessionId, 1).subscribe((res: any) => {
+        const exists = res.results.some((item: any) => item.id === this.movie?.id);
+        this.isFavorite = exists;
+      });
+    }
+  }
   toggleFavorite() {
     if (!this.movie) return;
 
