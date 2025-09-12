@@ -39,8 +39,8 @@ export class MovieCard {
 
     this.isFavorite = !this.isFavorite;
 
-    const accountId = this.user.accountId;
-    const sessionId = this.user.sessionId;
+    const accountId = this.user.currentAccountId;
+    const sessionId = this.user.currentSessionId;
     const mediaType = 'movie';
 
     if (this.isFavorite) {
