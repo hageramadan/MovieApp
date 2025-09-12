@@ -20,6 +20,7 @@ export class Wishlist {
   ngOnInit(): void {
     // this.userCredtional.accountId = '22295239';
     // this.userCredtional.sessionId = '96c319316580e13570710c02cf3577792085d514';
+    console.log({accountID :<string>this.userCredtional.accountId , sessionID : <string>this.userCredtional.sessionId})
     this.watchlistHttpClient
       .getWatchlist(<string>this.userCredtional.accountId, <string>this.userCredtional.sessionId, 1)
       .subscribe((responce) => {

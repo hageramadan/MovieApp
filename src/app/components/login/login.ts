@@ -20,18 +20,18 @@ export class login {
     // password: 'تعسف ةغ فهةث@12042002',
   };
 
-  apiKey: string = '9c3434f97dd081062d3f2e64eb7945f7';
+  apiKey: string = 'b565283dc7e83e50ea181e7329c96854';
 
   constructor(private http: HttpClient, public userCredtional: UserCredtionalI) {}
 
   login() {
-   
+
     this.http.get<any>(`https://api.themoviedb.org/3/authentication/token/new?api_key=${this.apiKey}`)
       .subscribe({
         next: (tokenRes) => {
           const requestToken = tokenRes.request_token;
 
-        
+
           const loginPayload = {
             username: this.user.username,
             password: this.user.password,
@@ -44,7 +44,7 @@ export class login {
           ).subscribe({
             next: (validateRes) => {
 
-            
+
               this.http.post<any>(
                 `https://api.themoviedb.org/3/authentication/session/new?api_key=${this.apiKey}`,
                 { request_token: requestToken }
@@ -55,7 +55,7 @@ export class login {
                   this.userCredtional.sessionId = sessionId;
                   localStorage.setItem('tmdb_session_id', sessionId);
 
-                 
+
                   this.http.get<any>(
                     `https://api.themoviedb.org/3/account?api_key=${this.apiKey}&session_id=${sessionId}`
                   ).subscribe({
