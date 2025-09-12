@@ -10,6 +10,23 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.css'
 })
 export class Header {
+
+isLoggedIn = false;
+
+
+ngOnInit() {
+  this.isLoggedIn = !!localStorage.getItem("tmdb_session_id");
+}
+
+logout() {
+  localStorage.removeItem("tmdb_session_id");
+  location.reload(); 
+}
+
+
+
+
+
    constructor(private theme:ThemeService){
 
    }
