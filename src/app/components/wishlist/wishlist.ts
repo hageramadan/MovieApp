@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WatchlistI } from '../../models/watchlist-i';
 import { getStarArray, calculateStars } from '../../utils/star-calculator';
 import { Watchlist } from '../../shared/watchlist';
 import { UserCredtionalI } from '../../shared/user-credtional-i';
+import { Subscription, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-wishlist',
@@ -11,26 +12,62 @@ import { UserCredtionalI } from '../../shared/user-credtional-i';
   templateUrl: './wishlist.html',
   styleUrl: './wishlist.css',
 })
-export class Wishlist {
-  constructor(public watchlistHttpClient: Watchlist, public userCredtional: UserCredtionalI) {}
+export class Wishlist implements OnInit, OnDestroy {
+  private credentialsSubscription: Subscription | null = null;
+
   baseBosterUrl: string = 'https://image.tmdb.org/t/p/w185/';
   movies: WatchlistI[] = [];
-  // Helper methods for star calculation
+  isLoading: boolean = true;
+
+  constructor(
+    public watchlistHttpClient: Watchlist,
+    public userCredtional: UserCredtionalI
+  ) {}
 
   ngOnInit(): void {
-    // this.userCredtional.accountId = '22295239';
-    // this.userCredtional.sessionId = '96c319316580e13570710c02cf3577792085d514';
-    console.log({accountID :<string>this.userCredtional.accountId , sessionID : <string>this.userCredtional.sessionId})
-    this.watchlistHttpClient
-      .getWatchlist(<string>this.userCredtional.accountId, <string>this.userCredtional.sessionId, 1)
-      .subscribe((responce) => {
-        console.log({
-          responce,
-          accountId: this.userCredtional.accountId,
-          sessionID: this.userCredtional.sessionId,
+    // Initialize from storage
+    this.userCredtional.initializeFromStorage();
+
+    // Subscribe to both accountId$ and sessionId$
+    this.credentialsSubscription = combineLatest([
+      this.userCredtional.accountId$,
+      this.userCredtional.sessionId$
+    ]).subscribe(([accountId, sessionId]) => {
+      if (accountId && sessionId) {
+        this.loadWatchlist();
+      } else {
+        console.log('Missing credentials:', { accountId, sessionId });
+        this.isLoading = false;
+      }
+    });
+  }
+
+  loadWatchlist(): void {
+    const accountId = this.userCredtional.currentAccountId;
+    const sessionId = this.userCredtional.currentSessionId;
+
+    if (accountId && sessionId) {
+      this.isLoading = true;
+      this.watchlistHttpClient
+        .getWatchlist(accountId, sessionId, 1)
+        .subscribe({
+          next: (response) => {
+            console.log({
+              response,
+              accountId,
+              sessionId,
+            });
+            this.movies = response.results;
+            this.isLoading = false;
+          },
+          error: (error) => {
+            console.error('Error loading watchlist:', error);
+            this.isLoading = false;
+          }
         });
-        this.movies = responce.results;
-      });
+    } else {
+      this.isLoading = false;
+    }
   }
 
   getStarArray(voteAverage: number): string[] {
@@ -42,21 +79,26 @@ export class Wishlist {
   }
 
   heartTrigger(movie: WatchlistI) {
-    // console.log(movie)
-    this.watchlistHttpClient
-      .removefromWatchList(
-        'movie',
-        movie.id,
-        <string>this.userCredtional.accountId,
-        <string>this.userCredtional.sessionId
-      )
-      .subscribe((responce) => {
-        if (responce.success == true) {
-          const index = this.movies.findIndex((searchMovie) => searchMovie.id === movie.id);
-          if (index !== -1) {
-            this.movies.splice(index, 1);
+    const accountId = this.userCredtional.currentAccountId;
+    const sessionId = this.userCredtional.currentSessionId;
+
+    if (accountId && sessionId) {
+      this.watchlistHttpClient
+        .removefromWatchList('movie', movie.id, accountId, sessionId)
+        .subscribe((response) => {
+          if (response.success == true) {
+            const index = this.movies.findIndex((searchMovie) => searchMovie.id === movie.id);
+            if (index !== -1) {
+              this.movies.splice(index, 1);
+            }
           }
-        }
-      });
+        });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.credentialsSubscription) {
+      this.credentialsSubscription.unsubscribe();
+    }
   }
 }

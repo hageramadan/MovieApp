@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router'; // Import Router
 import { FormsModule } from '@angular/forms';
 import { UserCredtionalI } from '../../shared/user-credtional-i';
 
@@ -15,23 +15,21 @@ export class login {
   user = {
     username: '',
     password: '',
-    // أو تقدر تستخدم حساب موجود
-    // username: 'mohamedyasser@Dax0r',
-    // password: 'تعسف ةغ فهةث@12042002',
   };
 
   apiKey: string = 'b565283dc7e83e50ea181e7329c96854';
 
-  constructor(private http: HttpClient, public userCredtional: UserCredtionalI) {}
+  constructor(
+    private http: HttpClient,
+    public userCredtional: UserCredtionalI,
+    private router: Router // Inject Router
+  ) {}
 
   login() {
-
     this.http.get<any>(`https://api.themoviedb.org/3/authentication/token/new?api_key=${this.apiKey}`)
       .subscribe({
         next: (tokenRes) => {
           const requestToken = tokenRes.request_token;
-
-
           const loginPayload = {
             username: this.user.username,
             password: this.user.password,
@@ -43,34 +41,32 @@ export class login {
             loginPayload
           ).subscribe({
             next: (validateRes) => {
-
-
               this.http.post<any>(
                 `https://api.themoviedb.org/3/authentication/session/new?api_key=${this.apiKey}`,
                 { request_token: requestToken }
               ).subscribe({
                 next: (sessionRes) => {
                   const sessionId = sessionRes.session_id;
-
                   this.userCredtional.sessionId = sessionId;
-                  localStorage.setItem('tmdb_session_id', sessionId);
-
 
                   this.http.get<any>(
                     `https://api.themoviedb.org/3/account?api_key=${this.apiKey}&session_id=${sessionId}`
                   ).subscribe({
                     next: (accountRes) => {
-                      this.userCredtional.accountId = accountRes.id;
+                      this.userCredtional.accountId = accountRes.id.toString();
 
                       alert(
                         `تسجيل الدخول ناجح!\n\n
                          اسم المستخدم: ${accountRes.username}\n
-                         رقم الحساب: ${this.userCredtional.accountId}\n
-                        كل تفاصيل الحساب \n ${accountRes.name}\n${accountRes.iso_3166_1}`
+                         رقم الحساب: ${this.userCredtional.currentAccountId}\n
+                         كل تفاصيل الحساب \n ${accountRes.name}\n${accountRes.iso_3166_1}`
                       );
 
-                      console.log('Session ID:', sessionId);
+                      console.log('Session ID:', this.userCredtional.currentSessionId);
                       console.log('Account Info:', accountRes);
+
+                      // Navigate to wishlist after successful login
+                      this.router.navigate(['/wishlist']);
                     },
                     error: (err) => {
                       console.error(' فشل في جلب بيانات المستخدم:', err);
