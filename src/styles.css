@@ -40,7 +40,10 @@ body.dark-mode a,
 body.dark-mode i,
 body.dark-mode .icon-hh,
 body.dark-mode .btn-app ,
-body.dark-mode .card
+body.dark-mode .card ,
+body.dark-mode input ,
+body.dark-mode label ,
+body.dark-mode #emailHelp
 {
   color: var(--white-color) !important;
   background-color: transparent !important;

@@ -1,6 +1,6 @@
 import { Component, signal , HostListener  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Home } from "./components/home/home";
+import { HomeComponent } from "./components/home/home";
 import { Header } from "./components/header/header";
 
 @Component({

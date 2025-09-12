@@ -1,4 +1,7 @@
 /* /* ====== Search Bar ====== */
+.container{
+  margin-top: 90px;
+}
 .container .d-flex input[type='search'] {
   border: 1px solid #d7d7d7;
   border-radius: 10px;
