@@ -17,8 +17,10 @@
         <a routerLink="wishlist">watchlist</a>
         <p class="num-fav">5</p>
       </button>
-      <button class="btn " routerLink="login">
-        <a routerLink="login" class="ms-3">Login</a>
+      <button class="btn " routerLink="account">
+          <a *ngIf="!isLoggedIn"  routerLink="/login">Login</a>
+          <a *ngIf="isLoggedIn" (click)="logout()">Logout</a>
+
         <i class="fa-regular fa-circle-user userI  mx-1"></i>
       </button>
     </div>
