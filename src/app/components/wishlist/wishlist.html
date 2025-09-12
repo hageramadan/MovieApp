@@ -17,7 +17,7 @@
     <div class="card-grid" *ngIf="!isLoading && movies.length > 0">
       <div class="card" *ngFor="let movie of movies">
         <div class="card-content">
-          <img [src]="baseBosterUrl+movie.poster_path" alt="{{ movie.title }} Poster" class="card-img" loading="lazy">
+          <img [src]="baseBosterUrl+movie.poster_path" alt="{{ movie.title }} Poster" class="card-img" loading="lazy" (click)="navigatetoMovieDetails(movie.id)">
           <div class="card-body">
             <div class="title-header">
               <h3 class="card-title">{{ movie.title }}</h3>
