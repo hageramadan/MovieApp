@@ -1,25 +1,30 @@
-<nav class="navbar navbar-expand-lg fixed-top ">
+<nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid px-5">
     <a class="navbar-brand" routerLink="/">Movie App</a>
-    <button class="navbar-toggler back-ground border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon "></span>
+    <button
+      class="navbar-toggler back-ground border-0"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-       
-       
-      </ul>
-        <div class="theme-toggle" style="cursor: pointer;" (click)="toggleTheme()">
-          <i [ngClass]="isDarkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
-        </div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+      <div class="theme-toggle" style="cursor: pointer" (click)="toggleTheme()">
+        <i [ngClass]="isDarkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
+      </div>
       <button class="btn d-flex watch me-1" routerLink="wishlist">
         <i class="fa-solid fa-heart icon-hh me-1"></i>
         <a routerLink="wishlist">watchlist</a>
-        <p class="num-fav">5</p>
+        <p class="num-fav">{{ count }}</p>
       </button>
-      <button class="btn " routerLink="login">
+      <button class="btn" routerLink="login">
         <a routerLink="login" class="ms-3">Login</a>
-        <i class="fa-regular fa-circle-user userI  mx-1"></i>
+        <i class="fa-regular fa-circle-user userI mx-1"></i>
       </button>
     </div>
   </div>
