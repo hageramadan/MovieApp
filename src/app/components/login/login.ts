@@ -9,7 +9,7 @@ import { UserCredtionalI } from '../../shared/user-credtional-i';
   standalone: true,
   imports: [RouterLink, FormsModule],
   templateUrl: './login.html',
-  styleUrls: ['./login.css']
+  styleUrls: ['./login.css'],
 })
 export class login {
   user = {
@@ -33,7 +33,7 @@ export class login {
           const loginPayload = {
             username: this.user.username,
             password: this.user.password,
-            request_token: requestToken
+            request_token: requestToken,
           };
 
           this.http.post<any>(
@@ -55,41 +55,32 @@ export class login {
                     next: (accountRes) => {
                       this.userCredtional.accountId = accountRes.id.toString();
 
-                      alert(
-                        `تسجيل الدخول ناجح!\n\n
-                         اسم المستخدم: ${accountRes.username}\n
-                         رقم الحساب: ${this.userCredtional.currentAccountId}\n
-                         كل تفاصيل الحساب \n ${accountRes.name}\n${accountRes.iso_3166_1}`
-                      );
+                      // alert(
+                      //   `تسجيل الدخول ناجح!\n\n
+                      //    اسم المستخدم: ${accountRes.username}\n
+                      //    رقم الحساب: ${this.userCredtional.currentAccountId}\n
+                      //    كل تفاصيل الحساب \n ${accountRes.name}\n${accountRes.iso_3166_1}`
+                      // );
 
-                      console.log('Session ID:', this.userCredtional.currentSessionId);
-                      console.log('Account Info:', accountRes);
+                      // console.log('Session ID:', this.userCredtional.currentSessionId);
+                      // console.log('Account Info:', accountRes);
 
-                      // Navigate to wishlist after successful login
+                     
                       this.router.navigate(['/']);
                     },
                     error: (err) => {
-                      console.error(' فشل في جلب بيانات المستخدم:', err);
-                      alert('تم تسجيل الدخول، لكن فشل في جلب بيانات الحساب');
-                    }
+                      console.error(' خطأ في إنشاء session:', err);
+                    },
                   });
-                },
-                error: err => {
-                  console.error(' خطأ في إنشاء session:', err);
-                  alert('فشل إنشاء session');
-                }
-              });
-            },
-            error: err => {
-              console.error(' بيانات الدخول غير صحيحة:', err);
-              alert('بيانات الدخول غير صحيحة');
-            }
-          });
+              },
+              error: (err) => {
+                console.error(' بيانات الدخول غير صحيحة:', err);
+              },
+            });
         },
-        error: err => {
+        error: (err) => {
           console.error(' فشل الحصول على request token:', err);
-          alert('حدث خطأ أثناء التحضير لتسجيل الدخول');
-        }
+        },
       });
   }
-}
+      })}}

@@ -3,6 +3,7 @@
 :root{
     --primary-color:#FFE353;
     --primary2-color:#ffd500;
+    --primary3-color:rgb(33, 33, 49);
     --second-color:#858585;
     --third-color:#292D32;
     --black-color:#000;
@@ -37,24 +38,28 @@ body.dark-mode h5,
 body.dark-mode h6,
 body.dark-mode p,
 body.dark-mode a,
-body.dark-mode i,
+body.dark-mode .userI,
 body.dark-mode .icon-hh,
 body.dark-mode .btn-app ,
 body.dark-mode .card ,
 body.dark-mode input ,
 body.dark-mode label ,
-body.dark-mode #emailHelp
+body.dark-mode #emailHelp,
+body.dark-mode input::placeholder
 {
   color: var(--white-color) !important;
   background-color: transparent !important;
 }
 body.dark-mode nav{
-   background-color:var(--black-color) !important;
+   background-color:var(--primary3-color) !important;
 
 }
 
+body.dark-mode .error-container > span.zero:after  {
+  background:var(--dark-mode) !important;
+}
 
-html, body { height: 100%; }
+/* html, body { height: 100%; } */
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .custom-snackbar {
   margin-top: 4rem !important; /* تبعيد الـ snackbar عن الأعلى */

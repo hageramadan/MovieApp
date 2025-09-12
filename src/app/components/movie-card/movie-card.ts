@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Watchlist } from '../../shared/watchlist';
 import { UserCredtionalI } from '../../shared/user-credtional-i';
 import { RatingCircle } from '../rating-circle/rating-circle';
+import { Movie } from '../../shared/services/movie';
 
 @Component({
   selector: 'app-movie-card',
@@ -24,7 +25,8 @@ export class MovieCard {
     private snackBar: MatSnackBar,
     private router: Router,
     private watchListService: Watchlist,
-    private user: UserCredtionalI
+    private user: UserCredtionalI ,
+    private movieService: Movie
   ) {}
   getPoster(movie: any) {
     return `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
@@ -67,5 +69,8 @@ export class MovieCard {
       verticalPosition: 'top',
       panelClass: ['custom-snackbar'], // top | bottom
     });
+  }
+  details(id: number) {
+    this.router.navigate(['/movie', id]);
   }
 }

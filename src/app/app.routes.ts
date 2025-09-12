@@ -7,14 +7,17 @@ import { Search } from './components/search/search';
 import { MovieDetails } from './components/movie-details/movie-details';
 import { AccountDetails } from './components/account-details/account-details';
 import { NotFound } from './components/not-found/not-found';
+import { authGuard } from './components/guards/auth-guard';
+import { guestGuard } from './components/guards/guest-guard';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: login },
-  { path: 'register', component: Register },
-  { path: 'wishlist', component: Wishlist },
-  { path: 'search', component: Search },
-  { path: 'movie/:id', component: MovieDetails },
-  { path: 'account', component: AccountDetails },
+  
+  { path: '', component: HomeComponent  },
+  { path: 'login', component: login, canActivate:[guestGuard] },
+  { path: 'register', component: Register, canActivate:[guestGuard] },
+  { path: 'wishlist',component: Wishlist,canActivate:[authGuard]},
+  { path: 'search',component: Search },
+  { path: 'movie/:id',component: MovieDetails},
+  { path: 'account',component: AccountDetails,canActivate:[authGuard]},
   { path: '**', component: NotFound },
 ];

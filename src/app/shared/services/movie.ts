@@ -54,4 +54,15 @@ getTrendingMovies(page: number = 1, time_window: 'day' | 'week' = 'day'): Observ
       `${this.baseUrl}/movie/now_playing?api_key=${this.apiKey}&language=en-US&page=${page}`
     );
   }
+  getMovieDetails(id: number): Observable<any> {
+  return this.http.get<any>(
+    `${this.baseUrl}/movie/${id}?api_key=${this.apiKey}&language=en-US`
+  );
+}
+getRecommendations(id: number): Observable<any> {
+  return this.http.get<any>(
+    `${this.baseUrl}/movie/${id}/recommendations?api_key=${this.apiKey}&language=en-US`
+  );
+}
+
 }
