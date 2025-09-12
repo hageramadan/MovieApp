@@ -55,17 +55,17 @@ export class login {
                     next: (accountRes) => {
                       this.userCredtional.accountId = accountRes.id.toString();
 
-                      alert(
-                        `تسجيل الدخول ناجح!\n\n
-                         اسم المستخدم: ${accountRes.username}\n
-                         رقم الحساب: ${this.userCredtional.currentAccountId}\n
-                         كل تفاصيل الحساب \n ${accountRes.name}\n${accountRes.iso_3166_1}`
-                      );
+                      // alert(
+                      //   `تسجيل الدخول ناجح!\n\n
+                      //    اسم المستخدم: ${accountRes.username}\n
+                      //    رقم الحساب: ${this.userCredtional.currentAccountId}\n
+                      //    كل تفاصيل الحساب \n ${accountRes.name}\n${accountRes.iso_3166_1}`
+                      // );
 
-                      console.log('Session ID:', this.userCredtional.currentSessionId);
-                      console.log('Account Info:', accountRes);
+                      // console.log('Session ID:', this.userCredtional.currentSessionId);
+                      // console.log('Account Info:', accountRes);
 
-                      // Navigate to wishlist after successful login
+                     
                       this.router.navigate(['/']);
                     },
                     error: (err) => {
@@ -83,4 +83,4 @@ export class login {
         },
       });
   }
-}
+      })}}
