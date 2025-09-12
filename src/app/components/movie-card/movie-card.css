@@ -2,6 +2,7 @@
   border-radius: 12px;
   object-fit: cover;
   height: 280px;
+  cursor: pointer;
 }
 
 .shadowcard {

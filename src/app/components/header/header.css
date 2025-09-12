@@ -1,6 +1,10 @@
 nav{
     background-color: var(--primary-color);
     margin-bottom: 10%;
+    box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.411);
+}
+.back-ground{
+ background-color: #ffffff;
 }
 .watch{
     font-size: 15px;

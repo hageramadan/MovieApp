@@ -17,7 +17,7 @@
   </div>
 </header>
 
-<div class="container mt-5">
+<div class="container mt-5 ">
 
   <!-- Trending -->
   <h2>Trending Movies</h2>
@@ -77,10 +77,12 @@
       <app-movie-card [movie]="movie"></app-movie-card>
     </div>
   </div>
-  <app-movie-pagination
+ 
+  <app-movie-pagination 
     [currentPage]="movies.upcoming.page"
     [totalPages]="movies.upcoming.totalPages"
     (pageChange)="onPageChange('upcoming', $event)"
   ></app-movie-pagination>
+  <br/>
 </div>
 
