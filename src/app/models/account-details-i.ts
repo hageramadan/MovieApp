@@ -8,5 +8,8 @@ export interface AccountDetailsI {
     gravatar: {
       hash: string;
     };
+    tmdb: {
+      avatar_path: string;
+    };
   };
 }
