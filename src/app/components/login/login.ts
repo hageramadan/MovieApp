@@ -66,7 +66,7 @@ export class login {
                       console.log('Account Info:', accountRes);
 
                       // Navigate to wishlist after successful login
-                      this.router.navigate(['/wishlist']);
+                      this.router.navigate(['/']);
                     },
                     error: (err) => {
                       console.error(' فشل في جلب بيانات المستخدم:', err);

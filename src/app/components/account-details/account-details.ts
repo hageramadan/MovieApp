@@ -1,43 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { AccountDetailsI } from '../../models/account-details-i';
 import { AccountS } from '../../shared/account-s';
+import { UserCredtionalI } from '../../shared/user-credtional-i';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-details',
   templateUrl: './account-details.html',
   styleUrls: ['./account-details.css'],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
-export class AccountDetails {
-  public account: AccountDetailsI | null =null
-    // id: 123456,
-    // name: "John Doe",
-    // username: "johndoe123",
-    // iso_639_1: "en",
-    // iso_3166_1: "US",
-    // avatar: {
-    //   gravatar: {
-    //     hash: "d4c5b6a7890f1e2d3c4b5a6f7890e1f2" // Example Gravatar hash
-    //   }
-    // }
-  // };
-  constructor(private httpAcctoun:AccountS)
-  {
+export class AccountDetails implements OnInit, OnDestroy {
+  public account: AccountDetailsI | null = null;
+  public isLoading: boolean = true;
+  private subscription: Subscription | null = null;
 
+  constructor(
+    private accountService: AccountS,
+    private userCredtional: UserCredtionalI,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.userCredtional.initializeFromStorage(); // Initialize credentials from localStorage
+    this.subscription = this.accountService.getAccountDetails().subscribe({
+      next: (account) => {
+        this.account = account;
+        this.isLoading = false;
+        console.log('Account details:', account);
+      },
+      error: (error) => {
+        console.error('Error in account details subscription:', error);
+        this.isLoading = false;
+      }
+    });
   }
 
-  ngOnInit() :void
-  {
-    this.httpAcctoun.getWatchlist().subscribe((res)=>
-    {
-      this.account = <AccountDetailsI>res
-      console.log(res)
-    })
+  logout(): void {
+    this.userCredtional.clearCredentials(); // Clear credentials
+    this.router.navigate(['/login']); // Navigate to login page
   }
-  logout()
-  {
 
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
-  // constructor() {} // Not needed for static data
 }
