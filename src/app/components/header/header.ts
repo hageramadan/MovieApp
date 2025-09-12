@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Header {
 
-isLoggedIn = true;
+isLoggedIn = false;
 
 
 ngOnInit() {

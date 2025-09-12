@@ -19,7 +19,7 @@
       </button>
       <button class="btn " routerLink="account">
           <a *ngIf="!isLoggedIn"  routerLink="/login">Login</a>
-          <a *ngIf="isLoggedIn" (click)="logout()">Logout</a>
+          <a *ngIf="isLoggedIn"  routerLink="account">account detail</a>
 
         <i class="fa-regular fa-circle-user userI  mx-1"></i>
       </button>
