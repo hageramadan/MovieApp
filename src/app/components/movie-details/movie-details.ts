@@ -12,13 +12,20 @@ import { RouterLink } from "@angular/router";
   styleUrl: './movie-details.css',
 })
 export class MovieDetails implements OnInit {
-  movies: any[] = [];   // الأفلام المقترحة
-  movie: any;           // تفاصيل الفيلم
+  movies: any[] = [];  
+  movie: any;         
   isFavorite: boolean = false;
 
   fillStar: number[] = [];
   emptyStar: number[] = [];
   halfStar: boolean = false;
+
+  isLoading: boolean = true;
+
+  isPosterLoaded: boolean = false;
+  isPosterError: boolean = false;
+  loading: boolean = false;
+  showNotFound: boolean = false;
 
   constructor(
     private movieService: Movie,
@@ -26,7 +33,6 @@ export class MovieDetails implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // نسمع لتغير الـ id من الـ route
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
@@ -35,19 +41,32 @@ export class MovieDetails implements OnInit {
     });
   }
 
-  // تحميل تفاصيل الفيلم والتوصيات
   loadMovie(id: number) {
-    this.movieService.getMovieDetails(id).subscribe((res: any) => {
-      this.movie = res;
+    this.loading = true;
+    this.movie = null;
+    this.showNotFound = false;
+    this.isLoading = true; 
 
-      // حساب النجوم (من 10 → 5)
-      if (this.movie?.vote_average) {
-        const stars = this.movie.vote_average / 2;
-        const full = Math.floor(stars);
-        this.halfStar = stars % 1 >= 0.5;
+    this.movieService.getMovieDetails(id).subscribe({
+      next: (res: any) => {
+        this.movie = res;
+           this.loading = false;
+        if (this.movie?.vote_average) {
+          const stars = this.movie.vote_average / 2;
+          const full = Math.floor(stars);
+          this.halfStar = stars % 1 >= 0.5;
 
-        this.fillStar = Array(full).fill(0);
-        this.emptyStar = Array(5 - full - (this.halfStar ? 1 : 0)).fill(0);
+          this.fillStar = Array(full).fill(0);
+          this.emptyStar = Array(5 - full - (this.halfStar ? 1 : 0)).fill(0);
+        }
+
+        this.isLoading = false; 
+      },
+      error: () => {
+        this.isLoading = false;
+        setTimeout(() => {
+          this.showNotFound = true;
+        }, 50);
       }
     });
 
@@ -55,11 +74,21 @@ export class MovieDetails implements OnInit {
       this.movies = res.results;
     });
   }
-   getPoster(movie: any) {
+
+  getPoster(movie: any) {
     return `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   }
+
   // فتح موقع الفيلم الرسمي
   openWebsite(url: string) {
     window.open(url, '_blank');
+  }
+
+  onPosterLoad() {
+    this.isPosterLoaded = true;
+  }
+
+  onPosterError() {
+    this.isPosterError = true;
   }
 }

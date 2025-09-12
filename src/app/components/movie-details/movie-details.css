@@ -77,6 +77,21 @@ body.dark-mode .stars {
   margin-top: 10rem ;
   gap: 1rem;
 }
+.loading-container {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
+
+
 @media (max-width: 1400px) and (min-width: 994px) {
   .img-res {
     width: 98%;
