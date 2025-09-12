@@ -10,7 +10,6 @@
     />
     <button type="submit" class="btn btn-warning col-1" (click)="search()">Search</button>
   </div>
-
   @if(searchedQuery === '') {
   } @else if (searchedQuery && searchResult.length === 0) {
   <h2 class="text-center">No Result Found</h2>
@@ -25,4 +24,10 @@
     }
   </div>
   }
-</div>
+   <app-movie-pagination
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  (pageChange)="changePage($event)">
+</app-movie-pagination>
+ </div>
+
