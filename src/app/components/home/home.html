@@ -1,16 +1,15 @@
-
 <header class="hero-section">
   <div class="hero-content container">
     <h1 class="display-4 fw-bold">Welcome to Our Movie Best</h1>
-    <p class="lead">
-      Millions of movies, TV shows and people to discover. Explore now
-    </p>
-    <form class="d-flex justify-content-center mt-3" role="search">
+    <p class="lead">Millions of movies, TV shows and people to discover. Explore now</p>
+    <form class="d-flex justify-content-center mt-3" role="search" (ngSubmit)="onSearch()">
       <input
         class="form-control w-50 me-2"
         type="search"
         placeholder="Search..."
         aria-label="Search"
+        [(ngModel)]="searchQuery"
+        name="search"
       />
       <button class="btn btn-warning" type="submit">Search</button>
     </form>
@@ -22,10 +21,7 @@
   <!-- Trending -->
   <h2>Trending Movies</h2>
   <div class="row g-4 mb-3">
-    <div
-      class="col-6 col-md-4 col-lg-2 mb-4"
-      *ngFor="let movie of movies.trending.data"
-    >
+    <div class="col-6 col-md-4 col-lg-2 mb-4" *ngFor="let movie of movies.trending.data">
       <app-movie-card [movie]="movie"></app-movie-card>
     </div>
   </div>
@@ -38,10 +34,7 @@
   <!-- Popular -->
   <h2 class="mt-5">Popular Movies</h2>
   <div class="row g-4 mb-3">
-    <div
-      class="col-6 col-md-4 col-lg-2 mb-4"
-      *ngFor="let movie of movies.popular.data"
-    >
+    <div class="col-6 col-md-4 col-lg-2 mb-4" *ngFor="let movie of movies.popular.data">
       <app-movie-card [movie]="movie"></app-movie-card>
     </div>
   </div>
@@ -54,10 +47,7 @@
   <!-- Top Rated -->
   <h2 class="mt-5">Top Rated Movies</h2>
   <div class="row g-4 mb-3">
-    <div
-      class="col-6 col-md-4 col-lg-2 mb-4"
-      *ngFor="let movie of movies.topRated.data"
-    >
+    <div class="col-6 col-md-4 col-lg-2 mb-4" *ngFor="let movie of movies.topRated.data">
       <app-movie-card [movie]="movie"></app-movie-card>
     </div>
   </div>
@@ -70,10 +60,7 @@
   <!-- Upcoming -->
   <h2 class="mt-5">Upcoming Movies</h2>
   <div class="row g-4 mb-3">
-    <div
-      class="col-6 col-md-4 col-lg-2 mb-4"
-      *ngFor="let movie of movies.upcoming.data"
-    >
+    <div class="col-6 col-md-4 col-lg-2 mb-4" *ngFor="let movie of movies.upcoming.data">
       <app-movie-card [movie]="movie"></app-movie-card>
     </div>
   </div>
@@ -85,4 +72,3 @@
   ></app-movie-pagination>
   <br/>
 </div>
-
