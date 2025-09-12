@@ -6,6 +6,7 @@ import { Watchlist } from '../../shared/watchlist';
 import { UserCredtionalI } from '../../shared/user-credtional-i';
 import { RatingCircle } from '../rating-circle/rating-circle';
 import { Movie } from '../../shared/services/movie';
+import { WatchlistCounter } from '../../shared/watchlist-counter';
 
 @Component({
   selector: 'app-movie-card',
@@ -25,8 +26,9 @@ export class MovieCard {
     private snackBar: MatSnackBar,
     private router: Router,
     private watchListService: Watchlist,
-    private user: UserCredtionalI ,
-    private movieService: Movie
+    private user: UserCredtionalI,
+    private movieService: Movie,
+    private counterService: WatchlistCounter
   ) {}
   getPoster(movie: any) {
     return `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
@@ -49,14 +51,18 @@ export class MovieCard {
       this.watchListService
         .addtoWatchList(mediaType, this.movie.id, <string>accountId, <string>sessionId)
         .subscribe({
-          next: () => this.openSnackBar('Added to watchlist'),
+          next: () => {
+            this.openSnackBar('Added to watchlist'), this.counterService.increment();
+          },
           error: (err) => console.error('Error adding:', err),
         });
     } else {
       this.watchListService
         .removefromWatchList(mediaType, this.movie.id, <string>accountId, <string>sessionId)
         .subscribe({
-          next: () => this.openSnackBar('Removed from watchlist'),
+          next: () => {
+            this.openSnackBar('Removed from watchlist'), this.counterService.decrement();
+          },
           error: (err) => console.error('Error removing:', err),
         });
     }

@@ -6,10 +6,11 @@ import { Watchlist } from '../../shared/watchlist';
 import { UserCredtionalI } from '../../shared/user-credtional-i';
 import { Subscription, combineLatest } from 'rxjs';
 import { RouterLink, Router } from '@angular/router';
+import { WatchlistCounter } from '../../shared/watchlist-counter';
 
 @Component({
   selector: 'app-wishlist',
-  imports: [CommonModule , RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './wishlist.html',
   styleUrl: './wishlist.css',
 })
@@ -23,7 +24,8 @@ export class Wishlist implements OnInit, OnDestroy {
   constructor(
     public watchlistHttpClient: Watchlist,
     public userCredtional: UserCredtionalI,
-    private router: Router
+    private router: Router,
+    private counterService: WatchlistCounter
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class Wishlist implements OnInit, OnDestroy {
     // Subscribe to both accountId$ and sessionId$
     this.credentialsSubscription = combineLatest([
       this.userCredtional.accountId$,
-      this.userCredtional.sessionId$
+      this.userCredtional.sessionId$,
     ]).subscribe(([accountId, sessionId]) => {
       if (accountId && sessionId) {
         this.loadWatchlist();
@@ -50,23 +52,22 @@ export class Wishlist implements OnInit, OnDestroy {
 
     if (accountId && sessionId) {
       this.isLoading = true;
-      this.watchlistHttpClient
-        .getWatchlist(accountId, sessionId, 1)
-        .subscribe({
-          next: (response) => {
-            console.log({
-              response,
-              accountId,
-              sessionId,
-            });
-            this.movies = response.results;
-            this.isLoading = false;
-          },
-          error: (error) => {
-            console.error('Error loading watchlist:', error);
-            this.isLoading = false;
-          }
-        });
+      this.watchlistHttpClient.getWatchlist(accountId, sessionId, 1).subscribe({
+        next: (response) => {
+          console.log({
+            response,
+            accountId,
+            sessionId,
+          });
+          this.movies = response.results;
+          this.counterService.setCount(this.movies.length);
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Error loading watchlist:', error);
+          this.isLoading = false;
+        },
+      });
     } else {
       this.isLoading = false;
     }
@@ -90,6 +91,7 @@ export class Wishlist implements OnInit, OnDestroy {
         .subscribe((response) => {
           if (response.success == true) {
             const index = this.movies.findIndex((searchMovie) => searchMovie.id === movie.id);
+            this.counterService.decrement();
             if (index !== -1) {
               this.movies.splice(index, 1);
             }
@@ -104,9 +106,7 @@ export class Wishlist implements OnInit, OnDestroy {
     }
   }
 
-
-  navigatetoMovieDetails(movieId:number)
-  {
-    this.router.navigate([`/movie/${movieId}`])
+  navigatetoMovieDetails(movieId: number) {
+    this.router.navigate([`/movie/${movieId}`]);
   }
 }
