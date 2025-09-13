@@ -1,65 +1,33 @@
 /* Main container */
 .wishlist-container {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 20px 0;
 }
 
-/* Responsive container */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-  width: 100%;
-}
+
 
 /* Page title */
 .page-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  color: #1a202c;
   margin-bottom: 2rem;
-  text-align: left;
 }
 
-/* Card grid layout */
-.card-grid {
-  display: grid;
-  gap: 24px;
-  grid-template-columns: 1fr; /* Mobile: 1 column */
-}
+
 
 /* Individual card */
 .card {
   width: 100%;
-  min-height: 280px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  font-family: 'Roboto', sans-serif;
   position: relative;
   overflow: hidden;
-  background: #fff;
-  display: flex;
-  padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card-content {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
-}
 
-.card-img {
-  width: 140px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-right: 20px;
-  position: relative;
-  flex-shrink: 0;
-  cursor: pointer;
-}
+
+
 
 .card-img .favorite-badge {
   position: absolute;
@@ -71,11 +39,7 @@
 
 .card-body {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   padding: 0;
-  gap: 8px;
 }
 
 .title-header {
@@ -91,11 +55,11 @@
   font-weight: 700;
   color: #1a202c;
   margin: 0;
-  flex: 1;
+  /* flex: 1; */
 }
 
 .favorite-btn {
-  font-size: 28px;
+  font-size: 23px;
   color: #fbbf24;
   cursor: pointer;
   margin-left: 16px;
@@ -104,7 +68,6 @@
 
 .favorite-btn:hover {
   color: #f59e0b;
-  transform: scale(1.1);
   transition: all 0.2s ease;
 }
 
@@ -122,7 +85,7 @@
 }
 
 .star-rating .bi {
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .star-rating .bi-star-fill {
@@ -154,6 +117,54 @@
   transform: translateY(-4px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
+img{
+  cursor: pointer;
+}
+/* login.css أو أي ملف CSS مناسب */
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid var(--primary2-color, #ffc107); /* لون متغير */
+  border-radius: 50%;
+  animation: spin 1s linear infinite, pulse 1.5s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); }
+  50%      { box-shadow: 0 0 20px 10px rgba(255, 193, 7, 0.2); }
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.1rem;
+}
+
+.card {
+  /* display: flex; */
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  display: flex;
+  height: 100%;
+}
+
+.card-img {
+  width: 40%; /* الصوره تاخد جزء من العرض */
+  object-fit: cover;
+  height: auto;
+}
 
 /* ============================================ */
 /* RESPONSIVE DESIGN FOR MULTIPLE SCREEN SIZES */
@@ -172,7 +183,7 @@
 
   .card {
     padding: 16px;
-    min-height: 240px;
+    /* min-height: 240px; */
   }
 
   .card-img {
@@ -207,7 +218,7 @@
 
   .card {
     padding: 18px;
-    min-height: 260px;
+    /* min-height: 260px; */
   }
 
   .card-img {
@@ -239,12 +250,12 @@
 
   .card {
     padding: 20px;
-    min-height: 280px;
+    /* min-height: 280px; */
   }
 
   .card-img {
     width: 130px;
-    height: 195px;
+    height: 100%;
     margin-right: 18px;
   }
 
@@ -271,12 +282,12 @@
 
   .card {
     padding: 20px;
-    min-height: 280px;
+    /* min-height: 280px; */
   }
 
   .card-img {
     width: 140px;
-    height: 200px;
+    height: 100%;
     margin-right: 20px;
   }
 
@@ -307,12 +318,12 @@
 
   .card {
     padding: 24px;
-    min-height: 300px;
+    /* min-height: 300px; */
   }
 
   .card-img {
     width: 150px;
-    height: 220px;
+    height: 100%;
     margin-right: 24px;
   }
 
@@ -329,9 +340,8 @@
    
   }
 }
-img{
-  cursor: pointer;
-}
+
+
 
 /* Extra large screens (1600px and up) */
 @media (min-width: 1600px) {
@@ -347,12 +357,10 @@ img{
 
 /* Landscape orientation adjustments */
 @media (orientation: landscape) and (max-height: 600px) {
-  .card {
-    min-height: 200px;
-  }
+
 
   .card-img {
-    height: 160px;
+    height: 100%;
   }
 
   .page-title {

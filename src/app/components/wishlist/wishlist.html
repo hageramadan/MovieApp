@@ -2,12 +2,11 @@
   <div class="container">
     <h1 class="page-title">Watch list</h1>
 
-    <div *ngIf="isLoading" class="text-center py-5">
-      <div class="spinner-border text-warning" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <p class="mt-3">Loading your watchlist...</p>
+   <div *ngIf="isLoading" class="text-center py-5">
+      <div class="loading-spinner mb-3"></div>
+      <p class="mt-3 text-muted">Loading your watchlist</p>
     </div>
+
 
     <div *ngIf="!isLoading && movies.length === 0" class="text-center py-5">
       <div class="hight4">
@@ -30,9 +29,7 @@
           <div class="card-body">
             <div class="title-header">
               <h3 class="card-title">{{ movie.title }}</h3>
-              <span class="favorite-btn" (click)="heartTrigger(movie)"
-                ><i class="bi bi-heart-fill"></i
-              ></span>
+              <span class="favorite-btn" (click)="heartTrigger(movie)"><i class="bi bi-heart-fill"></i></span>
             </div>
             <p class="release-date">{{ movie.release_date | date }}</p>
             <div class="star-rating">
@@ -48,7 +45,7 @@
               </span>
               <span class="rating-value">{{ movie.vote_average }}</span>
             </div>
-            <p class="card-text">{{ movie.overview }}</p>
+            <p class="card-text">{{ movie.overview | slice:0:120}}</p>
           </div>
         </div>
       </div>

@@ -21,13 +21,17 @@ export class Wishlist implements OnInit, OnDestroy {
   baseBosterUrl: string = 'https://image.tmdb.org/t/p/w185/';
   movies: WatchlistI[] = [];
   isLoading = true;
-
+  isFavorite: boolean = false;
   constructor(
     private watchlistHttpClient: Watchlist,
     private userCredtional: UserCredtionalI,
     private router: Router,
     private counterService: WatchlistCounter
   ) {}
+
+  heartTrigger2(movie: any) {
+  movie.isFavorite = !movie.isFavorite;
+}
 
   ngOnInit(): void {
     // متابعة التغيرات في الـ credentials
